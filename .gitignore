@@ -1,0 +1,33 @@
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Compiled Code #
+#################
+*.pyc
+
+# Editor Files #
+################
+*.swp
+
+# testing tools #
+#################
+htmlcov/
+ghostdriver.log
+.coverage
+
+# Installed 3rd Party Modules #
+###############
+node_modules/
+bower_components/
+
+# Testing Files #
+#################
+coverage/
+
