@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('cross')
+angular.module('portal')
   .service('Validate', [function Validate() {
     return {
         'message': {

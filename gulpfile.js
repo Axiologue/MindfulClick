@@ -19,7 +19,7 @@ var paths = {
   distScriptsProd: './dist.prod/js',
   templates: 'src/templates/**/*.html',
   scriptsDevServer: 'devServer/**/*.js',
-  images: 'src/img/*.*',
+  images: 'src/img/**/*.*',
   fa_fonts: 'bower_components/font-awesome/fonts/*.*',
 }
 

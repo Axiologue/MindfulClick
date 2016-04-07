@@ -30,6 +30,7 @@
     "angular-cookies": "~1.4.3",
     "font-awesome": "fontawesome#~4.4.0",
     "angularjs-slider": "~1.0.0",
-    "angucomplete-alt": "~2.1.0"
+    "angucomplete-alt": "~2.1.0",
+    "d3": "^3.5.16"
   }
 }
