@@ -50,9 +50,10 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#/Products/search">Products</a></li>
-            <li><a href="#/References/all">References</a></li>
-            <li><a href="#/Blog/landing">Blog</a></li>
+            <li><a href="#/products/search">Products</a></li>
+            <li><a href="#/references/all">References</a></li>
+            <li><a href="#/blog">Blog</a></li>
+            <li><a href="#/forum">Forum</a></li>
             <li><div class="nav-button"><a class="btn btn-black navbar-btn" href="#/signIn">Sign In</a></div></li>
           </ul>
         </div><!-- /.navbar-collapse -->
@@ -61,7 +62,7 @@
 
 
     <!-- Main Carousel -->
-    <div class="container-fluid carousel-wrapper">
+    <header class="container-fluid carousel-wrapper">
       <div class="row">
         <div class="col-xs-12 col-carousel">
 
@@ -80,7 +81,7 @@
               <div class="item active" style="background-image: url('img/headers/GrayWalking.jpg');">
                 <div class="carousel-caption caption-right carousel-caption-search">
                   <h2>Which Shoes Match Your Ethics?</h2>
-                  <form>
+                  <form class="form-white">
                     <div class="input-group">
                       <label class="sr-only" for="landing-search">Search</label> 
                       <input type="text" name="landing-search" id="landing-search" class="form-control" placeholder="Search Shoes, Brands, or References.." >
@@ -120,13 +121,13 @@
 
                     <div class="carousel-square">
                       <a href="#/company/NewBalance">
-                        <img class="img-responsive" src="img/logos/NewBalance-mid-white.png" />
+                        <img class="img-responsive" src="img/logos/New-Balance-mid-white.png" />
                       </a>
                     </div>
 
                     <div class="carousel-square">
                       <a href="#/company/UnderArmour">
-                        <img class="img-responsive" src="img/logos/UnderArmour-mid-white.png" />
+                        <img class="img-responsive" src="img/logos/Under-Armour-mid-white.png" />
                       </a>
                     </div>
 
@@ -148,6 +149,7 @@
 
             </div>
 
+
             <!-- Controls -->
             <a class="left carousel-control" href="#carousel-landing" role="button" data-slide="prev">
               <i class="fa fa-2x fa-angle-left" aria-hidden="true"></i>
@@ -161,7 +163,193 @@
 
         </div>
       </div>
-    </div>
+    </header>
+
+    <section class="container-fluid" id="recent" ng-controller="RecentCtrl">
+      <div class="row">
+        <div class="col-xs-12 col-md-6 col-lg-4 col-lg-offset-1">
+          <h2 class="title-block title-black">Newly Added Research</h2>
+
+          <ul class="recent-list">
+            <li ng-repeat="tag in tags">
+              <img class="brand-thumbnail" src="img/Logos/{{ tag.company }}-small-black.png" />
+              <strong><h5 class="recent-header"><a href="{{ tag.link}}">{{ tag.tag_type }}</a></h5></strong><span class="text-muted">From: <a href="#/references/detail/{{ tag.reference.id }}">{{ tag.reference }}</a></span>
+            </li>
+            <li class="text-center recent-button"><a class="btn btn-black" href="#/data/all"><h4>Browse the rest of our ethical data</h4></a></li>
+
+          </ul>
+        </div>
+
+        <div class="col-xs-12 col-md-6 col-lg-4 col-lg-offset-2">
+          <h2 class="title-block title-black">Recent/Upcoming Events</h2>
+
+          <ul class="recent-list">
+            <li ng-repeat="event in events">
+              <i class="fa fa-check-circle fa-2x fa-pull-left fa-border"></i>
+              <strong><h5 class="recent-header"><a href="#/events/detail/{{ event.id }}">{{ event.name }}</a></h5></strong><span class="text-muted">{{ event.location.name}}, {{ event.location.city }} -- {{ event.start}} </span>
+            </li>
+            <li class="text-center recent-button"><a class="btn btn-black" href="#/events/all"><h4>See out full calendar</h4></a></li>
+
+          </ul>
+
+        </div>
+      </div>
+
+      <div class="row dark-row">
+        <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+          <h2 class="title-block title-white">New Blog Posts</h2>
+
+          <ul class="recent-list">
+            <li ng-repeat="post in posts">
+              <strong><h3 class="recent-header recent-header-large"><a href="#/blog/posts/{{ post.title_url }}">{{ post.title.toUpperCase() }}</a></h3></strong>
+              <h4 class="recent-subheader">{{ post.sub_title }}</h4>
+              <p class="text-muted">{{post.excerpt}}...(<a href="#/blog/posts/{{ post.title_url }}">Read More</a>)</p>
+            </li>
+            <li class="text-center recent-button"><a class="btn btn-white" href="#/blog/all"><h4>Check out the rest of the blog!</h4></a></li>
+
+          </ul>
+
+
+        </div>
+      </div>
+    </section>
+
+    <section class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+          <h2 class="title-block title-black">FAQ</h2>
+
+          <uib-accordion close-others="true">
+  
+            <!-- accordion panel -->
+            <uib-accordion-group is-open="status.open1">
+              <uib-accordion-heading>
+                What is Axiologue?<i class="pull-right fa" ng-class="{'fa-minus-square-o': status.open1, 'fa-plus-square-o': !status.open1}"></i>
+
+              </uib-accordion-heading>
+              
+              <p>Axiologue is a crowd-sourced, community-based project to track the ethics of products and companies. We put ethical information in the hands of consumers, so they can shop in line with their own personal ethics and support the companies that are doing it right. We are follow five principles:</p>
+
+              <ul class="fa-ul">
+                <li><i class="fa-li fa fa-usd"></i> <strong>Free</strong>: Ethical information should never be behind a paywall. We believe ethical information should be accessible to anyone who wants access to it.</li>
+                <li><i class="fa-li fa fa-user"></i> <strong>Personalized</strong>: Ethics are deeply personal. Rather than assume some universal ethical standard, Axiologue allows you to prioritize what's important to you.</li>
+                <li><i class="fa-li fa fa-bar-chart"></i> <strong>Comprehensive</strong>: Axiologue covers all possible ethical categories, including environment, labor, political affiliation, and more.</li>
+                <li><i class="fa-li fa fa-unlock-alt"></i> <strong>Open</strong>: All of Axiologue's data will be publically available, via our own websites/apps and an API so that other developers can access the data directly.</li>
+                <li><i class="fa-li fa fa-comments"></i> <strong>Participatory</strong>: Axiologue is a crowd-sourced project, and all you need to contribute is a desire to bring ethical information to those who want it!</li>
+              </ul>
+
+              
+            </uib-accordion-group>
+
+            <!-- accordion panel -->
+            <uib-accordion-group is-open="status.open2">
+              <uib-accordion-heading>
+                Who is Axiologue?<i class="pull-right fa" ng-class="{'fa-minus-square-o': status.open2, 'fa-plus-square-o': !status.open2}"></i>
+              </uib-accordion-heading>
+              
+              <p>Axiologue is a community-based projects.  We are researchers, designers, teachers, artists, philosophers, programmers, students, and more. Axiologue could even be you!  All of our data is collected and processed by users like you, so look at our <a href="#/references/how-to">how to contribute</a> guide for information on how to contribute.</p>
+
+              <p>Axiologue was founded by artist/programmer <a href="http://www.nishi-broach.com/">Matt Nishi-Broach</a> and artist/community organizer <a href="http://www.chloebass.com">Chloë Bass</a>.</p>
+
+            </uib-accordion-group>
+
+            <!-- accordion panel -->
+            <uib-accordion-group is-open="status.open3">
+              <uib-accordion-heading>
+                How Does Scoring Work?<i class="pull-right fa" ng-class="{'fa-minus-square-o': status.open3, 'fa-plus-square-o': !status.open3}"></i>
+              </uib-accordion-heading>
+              
+              <p>This is such an important topic that we wrote a whole <a href="#/blog/posts/how-unethical-is-a-negative-two">blog post</a> about it.</p>
+
+              <p>The short answer is that we match the facts we know about each company/product with your ethical feelings about each fact.  The scores roughly translate to:</p>
+
+              <ul>
+                <li>a <strong>postive</strong> score means the product is in line with your ethics!</li>
+                <li>a <strong>negative</strong> score means the product is contrary to your ethics!</li>
+                <li>a <strong>zero</strong> means you don't care about that issue (it could also mean we don't have any data in that particular category)!</li>
+              </ul>
+
+              <p>To construct your own ethical profile, <a href="#/signUp">sign up</a> for an account. If you don't want to make an account at this time, don't worry: you can browse our products and see scores for our generic profiles</p>
+            </uib-accordion-group>
+
+            <!-- accordion panel -->
+            <uib-accordion-group is-open="status.open4">
+              <uib-accordion-heading>
+                How can I help?<i class="pull-right fa" ng-class="{'fa-minus-square-o': status.open4, 'fa-plus-square-o': !status.open4}"></i>
+              </uib-accordion-heading>
+              
+              <p>All our research is collected by user volunteers like you!  We wrote a guide to help <a href="#/references/how-to">first-time contributors</a>, and you should drop into our <a href="#/forum">forum</a> if you have have further questions.</p>
+
+            </uib-accordion-group>
+
+            <!-- accordion panel -->
+            <uib-accordion-group is-open="status.open5">
+              <uib-accordion-heading>
+                Do you only have information on shoes?<i class="pull-right fa" ng-class="{'fa-minus-square-o': status.open5, 'fa-plus-square-o': !status.open5}"></i>
+              </uib-accordion-heading>
+              
+              <p>As of right now, yes. In fact, we're focusing specifically on <em>athletic shoes</em>. We are planning to expand to other product categories in the near future, so if you have suggestions for a certain product category you'd like us to research, please <a href="MAILTO:info@axiologue.org">email us</a>.  We'd love to hear your suggestions!</p>
+
+            </uib-accordion-group>
+
+          </uib-accordion> 
+
+
+        </div>
+      </div>
+    </section>
+  
+    <footer class="container-fluid" id="footer">
+      <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 text-left">
+
+          <h2 class="title-block title-white">Stay In Touch</h2>
+
+          <!-- Begin MailChimp Signup Form -->
+          <div id="mc_embed_signup">
+            <h3>Sign Up For Our Mailing List</h3>
+            <form action="//axiologue.us10.list-manage.com/subscribe/post?u=a4380cffd095d122a97aaeae6&amp;id=1b7d52909b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate form-white" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
+                <div class="mc-field-group form-group">
+                  <label for="mce-EMAIL" class="sr-only">Email Address (required) </label>
+                  <input type="email" value="" name="EMAIL" class="required email form-control" id="mce-EMAIL" placeholder="Enter Your Email Address (required)">
+                </div>
+                <div class="mc-field-group form-group">
+                  <label for="mce-FNAME" class="sr-only">First Name </label>
+                  <input type="text" value="" name="FNAME" class="form-control" id="mce-FNAME" placeholder="Enter First Name">
+                </div>
+                <div class="mc-field-group form-group">
+                  <label for="mce-LNAME" class="sr-only">Last Name </label>
+                  <input type="text" value="" name="LNAME" class="form-control" id="mce-LNAME" placeholder="Enter Last Name">
+                </div>
+                <div id="mce-responses" class="clear">
+                  <div class="response" id="mce-error-response" style="display:none"></div>
+                  <div class="response" id="mce-success-response" style="display:none"></div>
+                </div>   
+                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_a4380cffd095d122a97aaeae6_1b7d52909b" tabindex="-1" value=""></div>
+                <div class="clear">
+                  <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-white">
+                </div>
+              </div>
+            </form>
+          </div>
+          <!--End mc_embed_signup-->
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 text-center">
+          <hr class="white-rule" />
+        </div>
+        <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 text-center">
+          <a href="https://twitter.com/Axiologue"><i class="fa fa-twitter fa-3x wow bounceIn"></i></a>
+           <a href="mailto:info@axiologue.org"><i class="fa fa-envelope fa-3x wow bounceIn" data-wow-delay=".1s"></i></a>
+           <a href="https://www.facebook.com/axiologgers"><i class="fa fa-facebook-official fa-3x wow bounceIn" data-wow-delay=".1s"></i></a>
+        </div>
+      </div>
+    </footer>
+                
   <!-- bower:js -->
   <!-- endinject -->
   <!-- inject:js -->

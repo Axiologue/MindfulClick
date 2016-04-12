@@ -1,5 +1,10 @@
 /* GENERAL STYLES */
 
+body {
+  font-family: "freight-sans-pro", "Helvetica Neue", Helvetic, sans-serif;
+  font-size: 16px;
+}
+
 h1, 
 h2, 
 h3,
@@ -8,6 +13,15 @@ h5,
 h6 {
   font-weight: 550;
   font-family: "fira-sans-2";
+}
+
+a {
+  color: #000;
+}
+
+a:hover, a:focus {
+  color: #f05f40;
+  text-decoration: none;
 }
 
 .heavy {
@@ -46,8 +60,106 @@ h6 {
   background: #f05f40;
 }
 
-.container-fluid {
-  padding: 0;
+.title-block {
+  text-align: center;
+  padding: 10px 30px;
+  margin: 50px auto;
+  max-width: 600px;
+}
+
+.title-black {
+  color: #000;
+  border: #000 solid 1px;
+}
+
+.title-white {
+  color: #fff;
+  border: #fff solid 1px;
+}
+
+.brand-thumbnail {
+  width: 50px;
+  height: 50px;
+  border: 1px #000 solid;
+}
+
+.text-muted a {
+  color: #777;
+}
+
+.text-muted a:hover {
+  color: #f05f40;
+  text-decoration: none;
+}
+
+.dark-row {
+  background: #000;
+  color: #ccc;
+}
+
+.dark-row h1,
+.dark-row h2,
+.dark-row h3,
+.dark-row h4,
+.dark-row h5,
+.dark-row h6 {
+  color: #ddd;
+}
+
+.dark-row a {
+  color: #fff;
+}
+
+.dark-row a:hover {
+  color: #f05f40;
+}
+
+section {
+  padding-bottom: 40px;
+}
+
+#recent {
+  padding-bottom: 0;
+}
+
+#recent .row {
+  padding-bottom: 40px;
+}
+
+/* FORM STYLING */
+
+.form-control {
+  border-radius: 0;
+}
+
+.form-white input[type="text"],
+.form-white input[type="email"] {
+  background: rgba(255, 255, 255, .0);
+  border: #fff solid 1px;
+}
+
+.form-write input::-webkit-input-placeholder {
+  color: #ddd !important;
+  font-family: "fira-sans-2", "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.form-white input:-moz-placeholder { /* Firefox 18- */
+  color: #ddd !important;  
+  font-family: "fira-sans-2", "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.form-white input::-moz-placeholder {  /* Firefox 19+ */
+  color: #ddd !important;  
+  font-family: "fira-sans-2", "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.form-white input:-ms-input-placeholder {  
+  color: #ddd !important;  
+  font-family: "fira-sans-2", "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.form-white .form-control {
+  color: #fff;
 }
 
 /* NAVBAR STYLING */
@@ -101,6 +213,10 @@ h6 {
   background: #f05f40;
 }
 
+.nav-button {
+  margin-left: 20px;
+}
+
 /* LANDING CAROUSEL STYLING */
 
 .carousel-wrapper {
@@ -141,9 +257,6 @@ h6 {
   margin-bottom: 15px;
 }
 
-.carousel-caption .form-control {
-  color: #fff;
-}
 
 
 .caption-right {
@@ -203,30 +316,6 @@ h6 {
   color: #fff;
 }
 
-.carousel-caption  input[type="text"] {
-  background: rgba(255, 255, 255, .0);
-  border: #fff solid 1px;
-}
-
-.carousel-caption input::-webkit-input-placeholder {
-  color: #ddd !important;
-  font-family: "fira-sans-2", "Helvetica Neue", Helvetica, sans-serif;
-}
-
-.carousel-caption input:-moz-placeholder { /* Firefox 18- */
-  color: #ddd !important;  
-  font-family: "fira-sans-2", "Helvetica Neue", Helvetica, sans-serif;
-}
-
-.carousel-caption input::-moz-placeholder {  /* Firefox 19+ */
-  color: #ddd !important;  
-  font-family: "fira-sans-2", "Helvetica Neue", Helvetica, sans-serif;
-}
-
-.carousel-caption input:-ms-input-placeholder {  
-  color: #ddd !important;  
-  font-family: "fira-sans-2", "Helvetica Neue", Helvetica, sans-serif;
-}
 
 .squares-wrapper {
   display: block;
@@ -332,4 +421,118 @@ h6 {
 
 .carousel-control.right .fa {
   right: 10%;
+}
+
+/* RECENT LIST STYLING */
+
+.recent-list {
+  list-style: none;
+  padding: 0 0 0 20px;
+}
+
+.recent-list li {
+  display: block;
+  margin: 20px auto;
+}
+
+.recent-list img {
+  float: left;
+  margin-right: 15px;
+}
+
+.recent-list .recent-button {
+  margin-top: 40px;
+}
+
+.recent-header {
+  margin: 0 0 5px 0;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.recent-header-large {
+  font-size: 18px;
+}
+
+.recent-subheader {
+  margin-top: 0;
+}
+
+.recent-list .fa-border {
+  border: 1px #000 solid;
+  border-radius: 0;
+}
+
+/* FAQ STYLING */
+
+.panel-group {
+  margin-top: 50px;
+}
+
+.panel-group .panel {
+  border: 1px solid #000;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.panel-default > .panel-heading {
+  border-color: #000;
+  box-shadow: none;
+  background-color: rgba(255, 255, 255, 1);
+  color: #000;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  transition: all .5s;
+}
+
+h4.panel-title {
+  font-weight: 600;
+}
+
+.panel-open > .panel-heading {
+  box-shadow: none;
+}
+
+
+.panel-default > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #000;
+}
+
+.panel-collapse a {
+  text-decoration: underline;
+}
+
+.panel a:focus {
+  color: #000;
+}
+
+.fa-ul li {
+  margin-bottom: 10px;
+}
+
+/* LANDING FOOTER STYLING */
+
+footer {
+  background: #000;
+  padding-bottom: 50px;
+}
+
+footer h3 {
+  color: #fff;
+}
+
+footer .fa {
+  color: #000;
+  text-shadow: -1px -1px 0 #fff,
+                1px -1px 0 #fff,
+               -1px 1px 0 #fff,
+                1px 1px 0 #fff;
+  margin: 20px 20px;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  transition: all .5s;
+}
+
+footer .fa:hover {
+  color: #f05f40;
 }

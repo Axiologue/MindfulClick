@@ -1,7 +1,9 @@
 'use strict';
 
 var portal = angular.module('portal', [
-    'ngResource'
+    'ngResource',
+    'ui.bootstrap',
+    'ngAnimate'
 ]);
 
 portal.config(['$resourceProvider',function($resourceProvider) {
