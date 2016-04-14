@@ -114,31 +114,31 @@
                   <div class="squares-wrapper">
                     <div class="carousel-square">
                       <a href="#/company/Nike">
-                        <img class="img-responsive" src="img/logos/Nike-mid-white.png" />
+                        <img class="img-responsive" src="img/Logos/Nike-mid-white.png" />
                       </a>
                     </div>
 
                     <div class="carousel-square">
                       <a href="#/company/Adidas">
-                        <img class="img-responsive" src="img/logos/Adidas-mid-white.png" />
+                        <img class="img-responsive" src="img/Logos/Adidas-mid-white.png" />
                       </a>
                     </div>
 
                     <div class="carousel-square">
                       <a href="#/company/NewBalance">
-                        <img class="img-responsive" src="img/logos/New-Balance-mid-white.png" />
+                        <img class="img-responsive" src="img/Logos/New-Balance-mid-white.png" />
                       </a>
                     </div>
 
                     <div class="carousel-square">
                       <a href="#/company/UnderArmour">
-                        <img class="img-responsive" src="img/logos/Under-Armour-mid-white.png" />
+                        <img class="img-responsive" src="img/Logos/Under-Armour-mid-white.png" />
                       </a>
                     </div>
 
                     <div class="carousel-square">
                       <a href="#/company/Asics">
-                        <img class="img-responsive" src="img/logos/Asics-mid-white.png" />
+                        <img class="img-responsive" src="img/Logos/Asics-mid-white.png" />
                       </a>
                     </div>
 
@@ -177,7 +177,7 @@
 
           <ul class="recent-list">
             <li ng-repeat="tag in tags">
-              <img class="brand-thumbnail" src="img/Logos/{{ tag.company }}-small-black.png" />
+              <img class="brand-thumbnail" src="img/Logos/{{ tag.company.replace(' ','-') }}-small-black.png" />
               <strong><h5 class="recent-header"><a href="{{ tag.link}}">{{ tag.tag_type }}</a></h5></strong><span class="text-muted">From: <a href="#/references/detail/{{ tag.reference.id }}">{{ tag.reference }}</a></span>
             </li>
             <li class="text-center recent-button"><a class="btn btn-black" href="#/data/all"><h4>Browse the rest of our ethical data</h4></a></li>
