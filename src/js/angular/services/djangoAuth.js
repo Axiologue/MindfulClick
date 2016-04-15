@@ -17,6 +17,7 @@ angular.module('portal')
         // Set use_session to true to use Django sessions to store security token.
         // Set use_session to false to store the security token locally and transmit it as a custom header.
         'use_session': false,
+        'cookieLength': 14,
         /* END OF CUSTOMIZATION */
         'authenticated': null,
         'authPromise': null,
@@ -97,7 +98,7 @@ angular.module('portal')
             }).then(function(data){
                 if(!djangoAuth.use_session){
                     var expires = new Date();
-                    expires.setDate(expires.getDate() + 1);
+                    expires.setDate(expires.getDate() + djangoAuth.cookieLength);
                     $http.defaults.headers.common.Authorization = 'Token ' + data.key;
                     $cookies.put('token',data.key,{'expires':expires});
                 }
@@ -111,10 +112,7 @@ angular.module('portal')
                 'method': "POST",
                 'url': "/logout/"
             }).then(function(data){
-                delete $http.defaults.headers.common.Authorization;
-                $cookies.remove('token');
-                $cookies.remove('user')
-                djangoAuth.authenticated = false;
+                djangoAuth.tokenClear();
                 $rootScope.$broadcast("djangoAuth.logged_out");
             });
         },
@@ -141,7 +139,12 @@ angular.module('portal')
             return this.request({
                 'method': "GET",
                 'url': "/user/",
-                'params': { 'foobar': new Date().getTime() }
+                'params': { 'cacheBuster': new Date().getTime() }
+            }).then(function (data) {
+              var expires = new Date();
+              expires.setDate(expires.getDate() + djangoAuth.cookieLength);
+              $cookies.putObject('user', data, {'expires':expires});
+              $rootScope.$broadcast("djangoAuth.set_profile", data);
             }); 
         },
         'updateProfile': function(data){
@@ -184,14 +187,14 @@ angular.module('portal')
             }
             var da = this;
             var getAuthStatus = $q.defer();
-            if(this.authenticated !== null && !force){
+            if (this.authenticated !== null && !force) {
                 // We have a stored value which means we can pass it back right away.
                 if(this.authenticated === false && restrict){
                     getAuthStatus.reject("User is not logged in.");
                 }else{
                     getAuthStatus.resolve();
                 }
-            }else{
+            } else {
                 // There isn't a stored value, or we're forcing a request back to
                 // the API to get the authentication status.
                 this.authPromise.then(function(){
@@ -212,8 +215,14 @@ angular.module('portal')
             this.API_URL = url;
             this.use_session = sessions;
             return this.authenticationStatus();
+        },
+        'tokenClear': function () {
+            var djangoAuth = this;
+            delete $http.defaults.headers.common.Authorization;
+            $cookies.remove('token');
+            $cookies.remove('user')
+            djangoAuth.authenticated = false;
         }
-
     };
     return service;
   }]);

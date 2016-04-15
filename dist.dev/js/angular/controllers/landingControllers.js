@@ -6,7 +6,7 @@ angular.module('portal')
     $scope.posts = response[0].posts;
 
     for (var i=0; i<$scope.tags.length; i++) {
-      $scope.tags[i].link = $scope.tags[i].product ? '#/products/detail/' + $scope.tags[i].product.id : '#/companies/detail/' + $scope.tags[i].company.id
+      $scope.tags[i].link = $scope.tags[i].product ? '#/products/detail/' + $scope.tags[i].product.id : '#/companies/detail/' + $scope.tags[i].company.replace(' ', '-');
     }
   };
 
