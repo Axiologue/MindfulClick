@@ -39,7 +39,8 @@ portal.config(['$routeProvider',
       .when('/passwordResetConfirm/:firstToken/:passwordResetToken', {
         templateUrl: 'templates/auth/passwordresetconfirm.html',
       })
-      .when('/company/detail/:companyName', {
+      .when('/companies/detail/:companyName', {
+        controller: 'CompanyDetailCtrl',
         templateUrl: 'templates/company_detail.html',
       })
       .otherwise({

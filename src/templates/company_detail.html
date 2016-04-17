@@ -1,10 +1,20 @@
     <header class="container-fluid">
       <div class="row">
-        <div class="col-xs-12 col-md-6">
-
+        <div class="col-xs-12 col-md-4 text-center">
+          <div class="detail-logo">
+            <img src="img/Logos/{{ company.name.replace(' ', '-') }}-large-black.png" class="img-responsive" alt="{{ company.name }}" />
+          </div>
+          <h2 class="title-block title-black-filled detail-title">{{ company.name }}</h2>
+          <h3 class="detail-supplement" ng-show="company.owns.length > 0">Owns: <span ng-repeat="owned in company.owns"><a href="#/companies/detail/{{ owned.replace(' ', '-') }}"><strong>{{ owned }} </strong></a></span></h3>
+          <h3 class="detail-supplement" ng-show="company.owned_by">Owned By: <a href="#/companies/detail/{{ company.owned_by.replace(' ', '-')}}"><strong>{{ company.owned_by }}</strong></a></h3>
+          <div bars-legend data="scores"></div>
         </div>
-        <div class="col-xs-12 col-md-6">
 
+        <div class="col-xs-12 col-md-8">
+          <div class="score-chart-header">
+            <h2 class="title-block title-black score-title">Ethical Scores</h2>
+          </div>
+          <horizontal-bars data="scores"></horizontal-bars>
         </div>
 
       </div>

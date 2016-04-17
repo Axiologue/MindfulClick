@@ -290,6 +290,32 @@ section {
   color: #f05f40;
 }
 
+.navbar-default .navbar-toggle {
+  margin: 26px 20px 26px 0px;
+  border-radius: 0;
+  border-color: #000;
+  -webkit-transition: all .35s;
+  -moz-transition: all .35s;
+  transition: all .35s;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background: #f05f40;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  border-radius: 0;
+  background-color: #000;
+  -webkit-transition: all .35s;
+  -moz-transition: all .35s;
+  transition: all .35s;
+}
+
+.navbar-default .navbar-toggle:hover .icon-bar,
+.navbar-default .navbar-toggle:focus .icon-bar {
+  background-color: #fff;
+}
 
 /* LANDING CAROUSEL STYLING */
 
@@ -614,3 +640,135 @@ footer .fa {
 footer .fa:hover {
   color: #f05f40;
 }
+
+/* COMPANY/PRODUCT DETAIL PAGE STYLING */
+
+.detail-logo {
+  display: block;
+  margin: 50px auto 0;
+  width: 300px;
+  height: 300px;
+  border: 1px solid #000;
+  padding: 15px;
+}
+
+.detail-title {
+  margin-top: 15px;
+  margin-bottom: 5px;
+  width: 300px
+}
+
+.detail-supplement {
+  margin: 10px auto;
+  width: 300px;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .detail-logo {
+    margin: 50px 0 0 40px;
+  }
+
+  .detail-title {
+    text-align: center;
+    margin-left: 40px;
+  }
+  
+  .detail-supplement {
+    margin-left: 40px; 
+  }
+}
+
+/* SCORE CHART STYLING */
+
+.score-chart-header {
+  margin-left: 0; 
+}
+
+@media (min-width: 768px) {
+  .score-chart-header {
+    margin-left: 70px; 
+  }
+}
+
+.negative-back {
+  fill: #ccc;
+}
+
+.score-title {
+  margin-bottom: 0
+}
+
+.horizontal-bar {
+  stroke: #000;
+  stroke-width: 1px;
+  fill: rgba(240, 95, 64, 1);
+}
+
+.horizontal-bar.Generic-Conservative {
+  stroke: rgb(255, 0, 0);
+  fill: rgba(255, 0, 0, .2);
+}
+
+.horizontal-bar.Generic-Liberal {
+  stroke: rgb(0, 0, 255);
+  fill: rgba(0, 0, 255, .2);
+}
+
+.horizontal-bar-title {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.horizontal-bar-title-rect {
+  fill: rgba(0, 0, 0, .05);
+  stroke: #000;
+  stroke-width: 1px;
+}
+
+.chart:first-child .horizontal-bar-title-rect {
+  fill: rgba(0, 0, 0, .3);
+}
+
+.axis path {
+  display: none;
+}
+
+.axis line {
+  shape-rendering: crispEdges;
+  stroke: #aaa;
+  stroke-dasharray: 2,2;
+}
+
+.whiteout {
+  stroke: #fff;
+  fill: #fff;
+  stroke-width: 1px;
+}
+
+.score-text {
+  fill: #000;
+}
+
+.score-text.Generic-Liberal {
+  fill: #00F;
+}
+
+.score-text.Generic-Conservative {
+  fill: #F00;
+}
+
+/* LEGEND STYLING */
+
+.bar-legend {
+  display: block;
+  margin: 50px auto 20px;
+  border: 1px solid #000;
+}
+
+@media (min-width: 768px) {
+  .bar-legend {
+    margin-left: 40px;
+  }
+}
+
