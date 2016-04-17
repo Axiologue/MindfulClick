@@ -1,9 +1,21 @@
 angular.module('portal')
 .controller('CompanyDetailCtrl', ['$scope', 'Company', '$routeParams', function ($scope, Company, $routeParams) {
+
+  // get name of the current company
   var name = $routeParams.companyName.replace('-', ' ');
 
-  $scope.company = Company.detail(name);
+  // Font Awesome Icons for tag categories
+  $scope.categoryIcons = {
+    'Animal Welfare': 'paw',
+    'Consumer Health': 'ambulance',
+    'Corporate Finances': 'dollar',
+    'Environment': 'leaf',
+    'Labor': 'suitcase', 
+    'Public Engagement': 'bullhorn'
+  };
 
+
+  // Convert data to usable form
   var parseScores = function (response) {
     var data = [];
 
@@ -28,6 +40,7 @@ angular.module('portal')
     $scope.scores = data;
   };
 
+  // Dummy Blank Data for score charts
   $scope.scores = [
     {
       'category' : '',
@@ -35,26 +48,9 @@ angular.module('portal')
     }
   ];
   
+  // API Calls 
   Company.getScores(name, parseScores);
+  $scope.company = Company.detail(name);
+  $scope.tags = Company.allTags(name)
 
-  /*
-  $scope.scores = [
-    {  
-      'category': 'overall',
-      'scores': [
-        {'name': 'Generic Liberal', 'score': 1.3},
-        {'name': 'Generic Conservative', 'score': -2.1},
-        {'name': 'kid_for_today', 'score': 3}
-      ]
-    },
-    {  
-      'category': 'Environment',
-      'scores': [
-        {'name': 'Generic Liberal', 'score': 2.1},
-        {'name': 'Generic Conservative', 'score': 0},
-        {'name': 'kid_for_today', 'score': 2.4}
-      ]
-    }
-  ];
-  */
 }]);

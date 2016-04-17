@@ -144,6 +144,18 @@ section {
   padding-bottom: 40px;
 }
 
+.fa-outline-white {
+  color: #000;
+  text-shadow: -1px -1px 0 #fff,
+                1px -1px 0 #fff,
+               -1px 1px 0 #fff,
+                1px 1px 0 #fff;
+  margin: 20px 20px;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  transition: all .5s;
+}
+
 /* FORM STYLING */
 
 .form-control {
@@ -625,17 +637,6 @@ footer h3 {
   color: #fff;
 }
 
-footer .fa {
-  color: #000;
-  text-shadow: -1px -1px 0 #fff,
-                1px -1px 0 #fff,
-               -1px 1px 0 #fff,
-                1px 1px 0 #fff;
-  margin: 20px 20px;
-  -webkit-transition: all .5s;
-  -moz-transition: all .5s;
-  transition: all .5s;
-}
 
 footer .fa:hover {
   color: #f05f40;
@@ -772,3 +773,72 @@ footer .fa:hover {
   }
 }
 
+/* TAG LIST STYLING */
+
+.tag-list ul {
+  list-style: none;
+}
+
+.tag-list li {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.tag-list .tag-list-icon {
+  border: none;
+  border-radius: 0;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  float: left;
+  margin-right: 10px;
+}
+
+.tag-list-icon i {
+  margin: 2px auto;
+  display: block;
+  text-align: center;
+}
+
+.tag-list .tag-type {
+  margin: 0;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.tag-list a {
+  color: #aaa;
+}
+
+.tag-list .no-data {
+  color: #aaa;
+}
+
+.tag-list .no-data a {
+  text-decoration: underline;
+  color: #aaa;
+}
+
+.tag-list .no-data a:hover {
+  text-decoration: underline;
+  color: #f05f40;
+}
+
+.tag-block {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.tag-detail-content {
+  width: 100%;
+  border: 1px solid #999;
+  padding: 10px 30px;
+}
+
+.tag-list dt {
+  width: 80px;
+}
+
+.tag-list dd {
+  margin: 10px 0 10px 100px;
+}
