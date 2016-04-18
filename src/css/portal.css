@@ -156,6 +156,18 @@ section {
   transition: all .5s;
 }
 
+.fa-outline-dark-gray {
+  color: #000;
+  text-shadow: -1px -1px 0 #999,
+                1px -1px 0 #999,
+               -1px 1px 0 #999,
+                1px 1px 0 #999;
+  margin: 20px 20px;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  transition: all .5s;
+}
+
 /* FORM STYLING */
 
 .form-control {
@@ -680,6 +692,27 @@ footer .fa:hover {
   }
 }
 
+.btn-personalized-wrapper{
+  width: 100%;
+  text-align: center;
+}
+
+.btn-personalized {
+  margin: 0 auto;
+  width: 300px;
+}
+
+@media (min-width: 768px) {
+  .btn-personalized {
+    width: 300px;
+    margin-left: 40px;
+  }
+
+  .btn-personalized-wrapper{
+    text-align: left;
+  }
+}
+
 /* SCORE CHART STYLING */
 
 .score-chart-header {
@@ -842,3 +875,4 @@ footer .fa:hover {
 .tag-list dd {
   margin: 10px 0 10px 100px;
 }
+

@@ -43,6 +43,10 @@ portal.config(['$routeProvider',
         controller: 'CompanyDetailCtrl',
         templateUrl: 'templates/company_detail.html',
       })
+      .when('/products/detail/:productID', {
+        controller: 'ProductDetailCtrl',
+        templateUrl: 'templates/product_detail.html',
+      })
       .otherwise({
           redirectTo: '/'
       });

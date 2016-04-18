@@ -1,0 +1,124 @@
+    <header class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-4 text-center">
+          <div class="detail-logo">
+            <img src="img/Logos/{{ product.company.replace(' ', '-') }}-large-black.png" class="img-responsive" alt="{{ product.name }}" />
+          </div>
+          <h2 class="title-block title-black-filled detail-title">{{ product.name }}</h2>
+          <h3 class="detail-supplement">Made By: <a href="#/companies/detail/{{ product.company.replace(' ','-') }}"><strong>{{ product.company }} </strong></a></h3>
+          <h3 class="detail-supplement">Category: {{ product.category }}</h3>
+          <div bars-legend data="scores"></div>
+          <div class="btn-personalized-wrapper">
+            <a href="#/login" class="btn btn-black btn-sm btn-personalized" ng-hide="authenticated">Login to see your own personalized score</a>
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-md-8">
+          <div class="score-chart-header">
+            <h2 class="title-block title-black score-title">Ethical Scores</h2>
+          </div>
+          <horizontal-bars data="scores"></horizontal-bars>
+        </div>
+
+      </div>
+    </header>
+
+    <section class="container-fluid dark-row">
+      <div class="row">
+
+        <!-- Product Only Data -->
+        <div class="col-xs-12 col-md-10 col-md-offset-2 col-lg-8 col-lg-offset-2 tag-list">
+          <h2 class="title-block title-white">Data on {{ product.name }}</h2>
+
+          <div ng-show="product_tag_count === 0">
+            <h5 class="no-data">No product-specific data on {{ product.name }}.  You can <a href="#/references/how-to">help us</a> research!</h5>
+          </div>
+
+          <div ng-repeat="category in product_tags" ng-show="product_tag_count > 0">
+            <h4 class="tag-list-title">{{ category.category.toUpperCase() }}</h4>
+            <ul>
+              <li ng-show="category.tags.length === 0">
+              <h5 class="no-data">No Data in this category.  You can <a href="#/references/how-to">help us</a> research!</h5>
+              </li>
+              <li ng-repeat="tag in category.tags">
+                <div class="tag-block">
+                  <div class="tag-list-icon">
+                    <i class="fa fa-{{ categoryIcons[category.category] }} fa-2x fa-outline-dark-gray"></i>
+                  </div>
+                  <h5 class="tag-type"><strong>{{ tag.tag_type }}<span ng-show="tag.value">: {{tag.value}}</span></strong> </h5>
+                  <span class="text-muted">
+                    From: <a href="#/references/detail/{{ tag.reference.id }}">{{ tag.reference.title }}</a> 
+                    (<a href="{{ tag.reference.url }}" target="_newtab">External Link</a>) 
+                    (<a role="button" data-target="#tag-detail-{{tag.id}}" data-toggle="collapse" aria-expanded="false" aria-controls="tag-detail-{{tag.id}}">Tag Details</a>)
+                  </span>
+                </div>
+
+                <div class="tag-block">
+                  <div class="collapse" id="tag-detail-{{tag.id}}">
+                    <div class="tag-detail-content">
+                      <dl class="dl-horizontal">
+                        <dt>EXCERPT</dt> 
+                        <dd>"{{ tag.excerpt }}"</dd>
+                        <dt>ADDED BY</dt> 
+                        <dd><span class="text-muted"><a href="#/users/{{ tag.added_by }}">{{ tag.added_by }}</a> at {{ tag.submitted_at }}</span></dd>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Company Only Data -->
+        <div class="col-xs-12 col-md-10 col-md-offset-2 col-lg-8 col-lg-offset-2 tag-list">
+          <h2 class="title-block title-white">Data on {{ product.company }}</h2>
+
+          <div ng-repeat="category in company_tags">
+            <h4 class="tag-list-title">{{ category.category.toUpperCase() }}</h4>
+            <ul>
+              <li ng-show="category.tags.length === 0">
+              <h5 class="no-data">No Data in this category.  You can <a href="#/references/how-to">help us</a> research!</h5>
+              </li>
+              <li ng-repeat="tag in category.tags">
+                <div class="tag-block">
+                  <div class="tag-list-icon">
+                    <i class="fa fa-{{ categoryIcons[category.category] }} fa-2x fa-outline-dark-gray"></i>
+                  </div>
+                  <h5 class="tag-type"><strong>{{ tag.tag_type }}<span ng-show="tag.value">: {{tag.value}}</span></strong> </h5>
+                  <span class="text-muted">
+                    From: <a href="#/references/detail/{{ tag.reference.id }}">{{ tag.reference.title }}</a> 
+                    (<a href="{{ tag.reference.url }}" target="_newtab">External Link</a>) 
+                    (<a role="button" data-target="#company-tag-detail-{{tag.id}}" data-toggle="collapse" aria-expanded="false" aria-controls="tag-detail-{{tag.id}}">Tag Details</a>)
+                  </span>
+                </div>
+
+                <div class="tag-block">
+                  <div class="collapse" id="company-tag-detail-{{tag.id}}">
+                    <div class="tag-detail-content">
+                      <dl class="dl-horizontal">
+                        <dt>EXCERPT</dt> 
+                        <dd>"{{ tag.excerpt }}"</dd>
+                        <dt>ADDED BY</dt> 
+                        <dd><span class="text-muted"><a href="#/users/{{ tag.added_by }}">{{ tag.added_by }}</a> at {{ tag.submitted_at }}</span></dd>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="container-fluid dark-row">
+      <div class="row">
+        <div class="col-xs-12">
+          <hr />
+        </div>
+      </div>
+    </div>

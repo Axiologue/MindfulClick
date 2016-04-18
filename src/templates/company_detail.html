@@ -8,6 +8,9 @@
           <h3 class="detail-supplement" ng-show="company.owns.length > 0">Owns: <span ng-repeat="owned in company.owns"><a href="#/companies/detail/{{ owned.replace(' ', '-') }}"><strong>{{ owned }} </strong></a></span></h3>
           <h3 class="detail-supplement" ng-show="company.owned_by">Owned By: <a href="#/companies/detail/{{ company.owned_by.replace(' ', '-')}}"><strong>{{ company.owned_by }}</strong></a></h3>
           <div bars-legend data="scores"></div>
+          <div class="btn-personalized-wrapper">
+            <a href="#/login" class="btn btn-black btn-sm btn-personalized" ng-hide="authenticated">Login to see your own personalized score</a>
+          </div>
         </div>
 
         <div class="col-xs-12 col-md-8">
@@ -34,10 +37,14 @@
               <li ng-repeat="tag in category.tags">
                 <div class="tag-block">
                   <div class="tag-list-icon">
-                    <i class="fa fa-{{ categoryIcons[category.category] }} fa-2x fa-outline-white"></i>
+                    <i class="fa fa-{{ categoryIcons[category.category] }} fa-2x fa-outline-dark-gray"></i>
                   </div>
                   <h5 class="tag-type"><strong>{{ tag.tag_type }}<span ng-show="tag.value">: {{tag.value}}</span></strong> </h5>
-                  <span class="text-muted">From: <a href="#/references/detail/{{ tag.reference.id }}">{{ tag.reference.title }}</a> (<a href="{{ tag.reference.url }}" target="_newtab">External Link</a>) (<a role="button" data-target="#tag-detail-{{tag.id}}" data-toggle="collapse" aria-expanded="false" aria-controls="tag-detail-{{tag.id}}">Tag Details</a>)</span>
+                  <span class="text-muted">
+                    From: <a href="#/references/detail/{{ tag.reference.id }}">{{ tag.reference.title }}</a> 
+                    (<a href="{{ tag.reference.url }}" target="_newtab">External Link</a>) 
+                    (<a role="button" data-target="#tag-detail-{{tag.id}}" data-toggle="collapse" aria-expanded="false" aria-controls="tag-detail-{{tag.id}}">Tag Details</a>)
+                  </span>
                 </div>
 
                 <div class="tag-block">

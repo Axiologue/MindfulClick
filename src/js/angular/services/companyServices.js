@@ -18,11 +18,11 @@ angular.module('portal')
   };
 
   services.getScores = function (name, success) {
-    return _companyScores.get({name: name, include_object: false}, success);
+    return _companyScores.get({name: name, include_object: 'False'}, success);
   };
 
   services.allTags = function (name) {
-    return _tags.all({company: name});
+    return _tags.all({company: name, no_product: 'True'});
   };
 
   return services;

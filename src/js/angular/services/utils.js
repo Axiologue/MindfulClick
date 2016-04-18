@@ -41,3 +41,46 @@ angular.module('portal')
 
   return services;
 }]);
+
+angular.module('portal')
+.factory('Scores', [function () {
+  var services = {},
+      _categoryIcons = {
+        'Animal Welfare': 'paw',
+        'Consumer Health': 'ambulance',
+        'Corporate Finances': 'dollar',
+        'Environment': 'leaf',
+        'Labor': 'suitcase', 
+        'Public Engagement': 'bullhorn'
+  }; 
+
+  services.getCategoryIcons = function () {
+    return _categoryIcons;
+  };
+
+  services.parseScores = function (scores) {
+    var data = [];
+
+    for (var j=0; j < scores[0].categories.length + 1; j++) { 
+      var category = {
+        'category': j === 0 ? 'overall' : scores[0].categories[j-1].category,
+        'scores': []
+      };
+
+      for (var i=0; i < scores.length; i++) {
+        var score = {
+          'name': scores[i].user,
+          'score': j === 0 ? scores[i].overall : scores[i].categories[j-1].score
+        };
+       
+        category.scores.push(score);
+      }
+
+      data.push(category);
+    }
+
+    return data;
+  };
+
+  return services;
+}]);
