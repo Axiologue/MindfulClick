@@ -5,7 +5,8 @@ var portal = angular.module('portal', [
     'ui.bootstrap',
     'ngAnimate',
     'ngRoute',
-    'ngCookies'
+    'ngCookies',
+    'hc.marked'
 ]);
 
 // Resource settings
@@ -46,6 +47,14 @@ portal.config(['$routeProvider',
       .when('/products/detail/:productID', {
         controller: 'ProductDetailCtrl',
         templateUrl: 'templates/product_detail.html',
+      })
+      .when('/blog/all', {
+        controller: 'BlogListCtrl',
+        templateUrl: 'templates/blog_list.html'
+      })
+      .when('/blog/detail/:postName', {
+        controller: 'BlogDetailCtrl',
+        templateUrl: 'templates/blog_detail.html'
       })
       .otherwise({
           redirectTo: '/'

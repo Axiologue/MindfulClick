@@ -1,0 +1,20 @@
+<section class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="title-block title-black">Blog Posts</h2>
+
+      <ul class="blog-list">
+        <li ng-repeat="post in posts">
+          <strong><h3 class="recent-header recent-header-large"><a href="#/blog/detail/{{ post.title_url }}">{{ post.title.toUpperCase() }}</a></h3></strong>
+          <h4 class="recent-subheader">{{ post.sub_title }}</h4>
+          <p class="text-muted">{{post.excerpt}}... (<a href="#/blog/posts/{{ post.title_url }}">Read More</a>)</p>
+          <p class="text-muted"><em>posted by</em> <a href="#/users/{{ post.posted_by }}">{{ post.posted_by }}</a> <em>at</em> {{ post.pub_time }}</p>
+        </li>
+
+      </ul>
+
+
+    </div>
+  </div>
+</section>
+
