@@ -25,7 +25,7 @@ angular.module('portal')
                     if(special_message){
                         messages.push(special_message);
                     }else if(this.message[e]){
-                        messages.push(this.message[e]);
+                        messages.push(this.message[e].replace('This',field));
                     }else{
                         messages.push("Error: " + e);
                     }

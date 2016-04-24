@@ -51,6 +51,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#/products/search">Products</a></li>
+            <li><a href="#/companies/all">Companies</a></li>
             <li><a href="#/references/all">References</a></li>
             <li><a href="#/blog/all">Blog</a></li>
             <li><a href="#/forum/main">Forum</a></li>
@@ -58,6 +59,8 @@
             <li class="dropdown" ng-show="authenticated">
               <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ user.username }} <i class="fa fa-angle-down"></i></a>
               <ul class="dropdown-menu">
+                <li><a href="#/account">Account Settings</a></li>
+                <li><a href="#/profile">Ethic Profile</a></li>
                 <li><a href="#/login" ng-click="logout()">Logout</a></li>
               </ul>
             </li>

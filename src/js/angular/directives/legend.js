@@ -13,7 +13,8 @@ angular.module('portal')
           marginTop = attrs.marginTop || 20,
           marginBottom = attrs.marginBottom || 20,
           marginLeft = attrs.marginLeft || 20,
-          marginRight = attrs.marginRight || 20;
+          marginRight = attrs.marginRight || 20,
+          legendAttr = attrs.legendAttr || 'user';
 
       var svg = d3.select(element[0])
         .append('svg')
@@ -45,7 +46,7 @@ angular.module('portal')
           .attr('width', boxHeight)
           .attr('height', boxHeight)
           .attr('class', function (d) {
-            return 'horizontal-bar ' + d.name.replace('_', '-');
+            return 'horizontal-bar ' + d.user.replace('_', '-');
           });
 
         var text = row.append('text')
@@ -53,7 +54,7 @@ angular.module('portal')
           .attr('y', boxHeight)
           .attr('dy', '-.35em')
           .text(function (d) {
-            return d.name.substr(0,7) === 'Generic' ? d.name.replace('_', ' ') : 'YOU';
+            return d.user.substr(0,7) === 'Generic' ? d.user.replace('_', ' ') : 'YOU';
           });
 
       };

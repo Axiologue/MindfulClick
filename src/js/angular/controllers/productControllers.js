@@ -17,7 +17,7 @@ angular.module('portal')
   
   // API Calls 
   var parseScores = function (response) {
-    $scope.scores = Scores.parseScores(response);
+    $scope.scores = Scores.parseSingleScores(response);
   };
 
   Product.getScores(productID, parseScores);
@@ -40,4 +40,64 @@ angular.module('portal')
 
   Product.detail(productID, productFollowUp);
 
+}]);
+
+angular.module('portal')
+.controller('ProductSearchCtrl', ['$scope', 'Product', 'Company', function ($scope, Product, Company) {
+  $scope.companies = Company.getAll();
+  $scope.divisions = Product.getDivisions();
+  $scope.categories = Product.getCategories();
+  $scope.productFormTemplate = 'templates/includes/product_form.html';
+  $scope.state = { 
+    priceRange: true,
+    showToggle: true,
+    loading: false,
+    searched: false
+  };
+  $scope.results = [];
+
+  // emptying product
+  function resetTemp () {
+    $scope.tempProduct = {
+        name: "",
+        company_id: "",
+        division: undefined,
+        category: undefined,
+        price_0: "",
+        price_1: "",
+    };
+  }
+
+  resetTemp();
+
+  $scope.clearForm = function ($event) {
+    $event.stopPropagation();
+    $event.preventDefault();
+
+    $scope.results = [];
+    $scope.state.searched = false;
+    resetTemp();
+  };
+
+  $scope.productSubmit = function () {
+    var productSuccess = function (response) {
+      $scope.state.loading = false;
+      $scope.results = response.products; 
+    };
+    
+    $scope.state.loading = true;
+    $scope.state.searched = true;
+    Product.list($scope.tempProduct, productSuccess);
+  };
+}]);
+
+angular.module('portal')
+.controller('ProductFormCtrl', ['$scope', function ($scope) {
+  $scope.toggleCollapse = function ($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    
+    $scope.toggleOpen = !$scope.toggleOpen;
+    $('#productFormCollapse').collapse('toggle'); 
+  }
 }]);

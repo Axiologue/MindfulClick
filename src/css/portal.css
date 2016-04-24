@@ -21,6 +21,7 @@ h6 {
   font-family: "fira-sans-2";
 }
 
+
 a {
   color: #000;
 }
@@ -28,6 +29,14 @@ a {
 a:hover, a:focus {
   color: #f05f40;
   text-decoration: none;
+}
+
+a.orange {
+  color: #f05f40;
+}
+
+a.orange:hover, a.orange:focus {
+  text-decoration: underline;
 }
 
 .heavy {
@@ -64,6 +73,16 @@ a:hover, a:focus {
 .btn-black:hover {
   color: #fff;
   background: #f05f40;
+}
+
+.btn-borderless {
+  background: none;
+  border: none;
+  padding: 5px 2px;
+}
+
+.btn-borderless:hover {
+  color: #f05f40;
 }
 
 .title-block {
@@ -168,10 +187,50 @@ section {
   transition: all .5s;
 }
 
+.text-large {
+  font-size: 18px;
+}
+
+.text-positive {
+  color: #008901;
+}
+
+.text-negative {
+  color: #d9534f;
+}
+
 /* FORM STYLING */
 
 .form-control {
   border-radius: 0;
+}
+
+select {
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none;
+
+}
+
+.fa-label {position:relative}
+.fa-label:after {
+    content:"\f107";   
+    font-family: "FontAwesome";
+    right:8px; top:5px;
+    padding:0 0 2px;
+    position:absolute;
+    pointer-events:none;
+}
+.fa-label:before {
+    content:'';
+    right:4px; top:10px;
+    background:#fff;
+    position:absolute;
+    pointer-events:none;
+    display:block;
 }
 
 .form-white input[type="text"],
@@ -184,6 +243,7 @@ section {
   border: #fff solid 1px;
 }
 
+.form-black select,
 .form-black input[type="text"],
 .form-black input[type="first_name"],
 .form-black input[type="last_name"],
@@ -695,6 +755,7 @@ footer .fa:hover {
 .btn-personalized-wrapper{
   width: 100%;
   text-align: center;
+
 }
 
 .btn-personalized {
@@ -758,6 +819,14 @@ footer .fa:hover {
   fill: rgba(0, 0, 0, .05);
   stroke: #000;
   stroke-width: 1px;
+}
+
+a:hover .horizontal-bar-title-rect {
+  stroke: #f05f40;
+}
+
+a:hover .horizontal-bar-title {
+  fill: #f05f40;
 }
 
 .chart:first-child .horizontal-bar-title-rect {
@@ -923,10 +992,167 @@ footer .fa:hover {
   max-width: 100%;
 }
 
-.post-content .text-positive {
-  color: #008901;
+
+/* PREFERENCE PANEL */
+
+.preferences {
+  margin-bottom: 50px;
 }
 
-.post-content .text-negative {
-  color: #d9534f;
+
+.preferences h2 {
+  font-weight: 600;
 }
+
+.preferences .table {
+  min-width: 100%;
+  table-layout: fixed;
+}
+
+.preferences .col-score {
+  width: 200px;
+}
+
+.preferences .header-row {
+  border: 1px solid #000;
+}
+
+.preferences .header-row th {
+  border: none;
+}
+
+.preferences .header-row + .content-row td {
+  border: none;
+}
+
+
+.preferences .cell-score {
+  text-align: right;
+}
+
+.preferences .cell-score .score {
+  font-family: fira-sans-2;
+  font-weight: 600;
+}
+
+.preferences .cell-score select {
+  color: #000;
+  font-family: fira-sans-2;
+  width: 50px;
+}
+
+/* FULL COMPANY PAGE */
+
+.filter-box h4 {
+  font-weight: 600;
+}
+
+.filter-box {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #000;
+  margin: 30px auto;
+}
+
+@media (min-width: 768px) {
+  .filter-box {
+    margin-left: 40px;
+  }
+}
+
+/* PRODUCT FORM STYLING */
+
+.left-inner-addon {
+    position: relative;
+}
+.left-inner-addon input {
+    padding-left: 22px;    
+}
+.left-inner-addon span {
+    position: absolute;
+    padding: 7px 12px;
+    pointer-events: none;
+}
+
+.form-inline .form-group{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.form-sub-group {
+  padding: 0;
+  margin-bottom: 15px;
+}
+
+/* Search Styling */
+
+.search-list {
+  list-style: none;
+  width: 100%;
+  padding: 0;
+}
+
+.search-list > li {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
+
+@media (min-width: 768px) { 
+  .search-list > li {
+    width: 50%;
+  }
+}
+
+@media (min-width: 992px) { 
+  .search-list > li {
+    width: 33%;
+  }
+}
+
+.search-list > li > a {
+  display: block;
+  position: relative;
+  border: 1px solid transparent;
+  background: transparent;
+  width: 100%;
+  height: 65px;
+  padding: 5px;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  transition: all .5s;
+}
+
+.search-list > li > a:hover {
+  border: 1px solid #000;
+  background: #f05f40;
+  color: #fff;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  transition: all .5s;
+}
+
+.search-list > li > a:hover .text-muted {
+  color: #ddd;
+}
+
+.search-list .brand-thumbnail {
+  position: absolute;
+  display: block;
+  top: 5px;
+  left: 5px;
+}
+
+.search-list .search-content {
+  position: absolute;
+  display: block;
+  top: 10px;
+  left: 65px;
+}
+
+.search-list .search-header {
+  font-weight: 600;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+

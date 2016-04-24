@@ -1,0 +1,45 @@
+<section class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+      <h2 class="title-block title-black">Your Ethical Profile</h2>
+
+      <div ng-repeat="category in preferences" class="preferences">
+        <h2>{{ category.category }}</h2>
+
+        <table class="table" ng-repeat="subcat in category.sub" ng-show="subcat.prefs.length > 0">
+          <colgroup>
+            <col class="col-type">
+            <col class="col-score">
+          </colgroup>
+          <tr class="header-row">
+            <th>{{ subcat.sub }}</th>
+            <th>Your Ethical Preference</th>
+          </tr>
+          <tr class="content-row" ng-repeat="fact in subcat.prefs" ng-controller="SinglePrefCtrl">
+            <td>{{ fact.type }}</td>
+            <td class="cell-score">
+              <div ng-hide="showPrefForm">
+                <span class="score" ng-class="{'text-positive': fact.preference > 0, 'text-negative': fact.preference< 0}">{{ fact.preference }}</span> 
+                <span class="text-muted"><button class="btn btn-sm btn-borderless" ng-click="openPrefForm()">(edit)</button></span>
+              </div>
+              <div ng-show="showPrefForm">
+                <form class="form-inline form-black" ng-submit="updatePref()">
+                  <label class="fa-label">
+                  <select ng-model="newPref.preference" class="form-control" convert-to-number>
+                    <option value="{{ opt }}" ng-repeat="opt in options">{{ opt }}</option>
+                  </select>
+                  </label>
+                  <button type="submit" class="btn btn-sm btn-borderless"><i class="fa fa-check"></i></button>
+                  <button class="btn btn-sm btn-borderless" ng-click="closePrefForm($event)"><i class="fa fa-times"></i></button>
+                </form>
+                
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</section>
+  

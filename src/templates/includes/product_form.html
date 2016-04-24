@@ -1,0 +1,82 @@
+        <div ng-controller="ProductFormCtrl">
+          <h3 class="text-danger" ng-show="error">{{error.msg}}</h3>
+          <h3 class="text-danger" ng-repeat="error in errors.non_field_errors">{{error}}</h3>
+          <h3 class="text-success" ng-show="success">{{success}}</h3>
+          <form class="form-black" ng-submit="productSubmit()">
+
+            <div class="form-group">
+              <h3 class="text-danger" ng-repeat="error in errors.name">{{error}}</h3>
+              <label for="{{'name' + product.id}}">NAME:</label>
+              <input type="text" id="{{'name' + product.id}}" ng-model="tempProduct.name" name="title" class="form-control" placeholder="Product Name">
+            </div>
+            <div id="productFormCollapse" class="collapse">
+              <div class="form-group">
+                <label for="{{'companies' + product.id}}">COMPANY:</label>
+                <select ng-model="tempProduct.company_id" class="form-control" ng-options="company.id as company.name for company in companies" >
+                  <option value="">---- Select Company ----</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <h3 class="text-danger" ng-repeat="error in errors.division">{{error}}</h3>
+                <label for="{{'division' + product.id}}">DIVISION:</label>
+                <select id="{{'division' + product.id}}" ng-model="tempProduct.division" class="form-control" >
+                  <option value="">---- Select Division (Optional) ----</option>
+                  <option ng-repeat="division in divisions" value="{{division}}">{{division}}</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <h3 class="text-danger" ng-repeat="error in errors.category">{{error}}</h3>
+                <label for="{{'category' + product.id}}">CATEGORY:</label>
+                <select id="{{'category' + product.id}}" ng-model="tempProduct.category" class="form-control" >
+                  <option value="">---- Select Category (Optional) ----</option>
+                  <option ng-repeat="category in categories" value="{{category}}">{{category}}</option>
+                </select>
+              </div>
+
+              <div class="form-group" ng-if="!state.priceRange">
+                <label for="{{'price' + product.id}}">PRICE:</label>
+                <h3 class="text-danger" ng-repeat="error in errors.price">{{error}}</h3>
+                <div class="left-inner-addon">
+                  <span>$</span>
+                  <input type="text" id="{{'price' + product.id}}" ng-model="tempProduct.price" name="title" class="form-control" placeholder="if a range is listed, give the cheapest value">
+                </div>
+              </div>
+
+              <div class="form-group" ng-if="state.priceRange">
+                <label for="{{'price' + product.id}}">PRICE (may not reflect price in stores):</label>
+                <h3 class="text-danger" ng-repeat="error in errors.price">{{error}}</h3>
+                <div class="col-xs-12 form-sub-group">
+                  <div class="form-inline">
+                    <div class="form-group">
+                      <div class="left-inner-addon">
+                        <span>$</span>
+                        <input type="text" id="{{'priceMin' + product.id}}" ng-model="tempProduct.price_0" name="title" class="form-control" placeholder="Minimum Price">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="left-inner-addon">
+                        <span>$</span>
+                        <input type="text" id="{{'priceMax' + product.id}}" ng-model="tempProduct.price_1" name="title" class="form-control" placeholder="Maximum Price">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group" ng-if="state.showImageLink">
+              <h3 class="text-danger" ng-repeat="error in errors.image_link">{{error}}</h3>
+              <label for="{{'image_link' + article.id}}">IMAGE LINK (OPTIONAL):</label>
+              <input type="text" id="{{'image_link' + article.id}}" ng-model="tempProduct.image_link" name="image_link" class="form-control"  >
+            </div>
+
+            <div class="form-group">
+              <input type="submit" class="btn btn-black submit-button" value="Submit">
+              <button class="btn btn-black" ng-click="clearForm($event)">Clear</button>
+              <button class="btn btn-borderless" ng-click="toggleCollapse($event)" ng-show="state.showToggle" ><span ng-hide="toggleOpen">(Advanced Search)</span><span ng-show="toggleOpen">(Basic Search)</span></button>
+            </div>
+            
+          </form>
+        </div>

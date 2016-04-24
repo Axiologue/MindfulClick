@@ -1,5 +1,5 @@
 angular.module('portal')
-.controller('MasterCtrl', ['$scope', 'djangoAuth', '$cookies', function ($scope, djangoAuth) {
+.controller('MasterCtrl', ['$scope', 'djangoAuth', '$location', 'LinkStore', function ($scope, djangoAuth, $location, LinkStore) {
   var expires = {};
 
   // Assume user is not logged in until we hear otherwise
@@ -8,7 +8,7 @@ angular.module('portal')
   $scope.user = {'username':'','first_name':'','last_name':'','email':''};
 
 
-// Wait for the status of authentication, set scope var to true if it resolves
+    // Wait for the status of authentication, set scope var to true if it resolves
     djangoAuth.authenticationStatus(true).then(function(){
         $scope.authenticated = true;
         djangoAuth.profile();
@@ -30,10 +30,13 @@ angular.module('portal')
         $scope.user = data;
     });
 
-    // If the user attempts to access a restricted page, redirect them back to the main page.
+    // If the user attempts to access a restricted page, redirect to login page with error.
     $scope.$on('$routeChangeError', function(ev, current, previous, rejection){
       console.error("Unable to change routes.  Error: ", rejection);
-      $location.path('/login').replace();
+      console.log(previous);
+      console.log(current);
+      LinkStore.set(previous.$$route.originalPath);
+      $location.path('/forbidden');
     });
 
     $scope.logout = function(){

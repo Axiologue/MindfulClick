@@ -120,6 +120,8 @@ angular.module('portal')
 angular.module('portal')
 .controller('UserprofileCtrl', ['$scope','djangoAuth','Validate',function ($scope, djangoAuth, Validate) {
     $scope.complete = false;
+    $scope.model = $.extend({}, $scope.user);
+    console.log($scope.user);
     $scope.updateProfile = function(formData, model){
       $scope.errors = [];
       Validate.form_validation(formData,$scope.errors);
@@ -155,3 +157,8 @@ angular.module('portal')
       }
     };
   }]);
+
+angular.module('portal')
+.controller('ForbiddenCtrl', ['$scope', 'LinkStore', function ($scope, LinkStore) {
+  $scope.backLink = LinkStore.get();
+}]);

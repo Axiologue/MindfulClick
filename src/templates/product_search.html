@@ -1,0 +1,36 @@
+<section class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+      <h2 class="title-block title-black">Find a Shoe</h2>
+
+      <div ng-include="productFormTemplate"></div>
+    </div>
+  </div>
+  <div ng-show="state.searched" class="row">
+    <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+      <hr >
+      <div ng-show="state.loading" class="text-center">
+        <i class="fa fa-spinner fa-pulse fa-4x"></i>
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div ng-hide="state.loading">
+        <ul ng-show="results.length > 0" class="search-list">
+          <li ng-repeat="product in results" class="search-product">
+            <a href="#/products/detail/{{ product.id }}">
+              <img class="brand-thumbnail" src="img/Logos/{{ product.company.replace(' ','-') }}-small-black.png" />
+              <div class="search-content">
+                <strong><h4 class="search-header">{{product.name}}</h4></strong>
+                <span class="text-muted">{{ product.company }}</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+        
+        <div ng-hide="results.length > 0" class="text-center">
+          <h2>No Products Found that Match Your Search</h2>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

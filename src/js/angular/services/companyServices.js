@@ -9,6 +9,9 @@ angular.module('portal')
       _companyScores = $resource(BaseUrl + 'profile/scores/company/', {}, {
         get: { method: 'GET', isArray: true}
       }),
+      _allScores = $resource(BaseUrl + 'profile/scores/company/all/', {}, {
+        get: { method: 'GET', isArray: true}
+      }),
       _tags = $resource(BaseUrl + 'tags/etags/list/', {},{
         all: {method: 'GET', isArray: true}
       });
@@ -21,8 +24,16 @@ angular.module('portal')
     return _companyScores.get({name: name, include_object: 'False'}, success);
   };
 
+  services.allScores = function (success) {
+    return _allScores.get({include_subcategories: 'False'}, success);
+  };
+
   services.allTags = function (name) {
     return _tags.all({company: name, no_product: 'True'});
+  };
+
+  services.getAll = function () {
+    return _companyInfo.all();
   };
 
   return services;

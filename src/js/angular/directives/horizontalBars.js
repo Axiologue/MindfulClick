@@ -9,13 +9,14 @@ angular.module('portal')
       // attribute settings: can be re-defined on object
       var marginTop = parseInt(attrs.marginTop) || 70,
           marginBottom = parseInt(attrs.marginBottom) || 50,
-          barHeight = parseInt(attrs.barHeigh) || 20,
+          barHeight = parseInt(attrs.barHeight) || 20,
           barPadding = parseInt(attrs.barPadding) || 5,
           barClass = attrs.barClass || 'horizontal-bar',
           titleClass = attrs.titleClass || 'horizontal-bar-title',
           appendNameToClass = attrs.appendName ? attrs.appendName === 'true' : true,
-          chartGap = attrs.chartGap || 20,
-          titleSpace = attrs.titleSpace || 120;
+          chartGap = parseInt(attrs.chartGap) || 20,
+          titleSpace = parseInt(attrs.titleSpace) || 120,
+          linkText = attrs.linkText || false;
 
 
       var svg = d3.select(element[0])
@@ -50,7 +51,7 @@ angular.module('portal')
         var nodeWidth = d3.select(element[0]).node().offsetWidth,
             height = data.length * (chartGap + data[0].scores.length * (barHeight + barPadding)),
             marginLeft = nodeWidth > 768 ? parseInt(attrs.marginLeft) || 10 : 10,
-            marginRight = nodeWidth > 768 ? parseInt(attrs.marginRight) || 50 : 10,
+            marginRight = nodeWidth > 768 ? parseInt(attrs.marginRight) || 50 : 20,
             width = nodeWidth - marginLeft - marginRight - titleSpace,
             xScale = d3.scale.linear()
               .domain([0, 5])
@@ -92,11 +93,19 @@ angular.module('portal')
 
         // For each subset of data, create a group and move to the appropriate position
         var charts = wrapper.selectAll('g.chart')
-          .data(data).enter()
-          .append('g').attr('class', 'chart')
-          .attr('transform', function (d, i) {
-            return 'translate(0, ' + (i * (chartGap + chartHeight)) + ')'; 
+          .data(data).enter();
+
+        if (linkText) {
+          charts = charts.append('a')
+          .attr('xlink:href',function (d) {
+            return linkText + d.label.replace(' ', '-');
           });
+        }
+
+        charts = charts.append('g').attr('class', 'chart')
+            .attr('transform', function (d, i) {
+              return 'translate(0, ' + (i * (chartGap + chartHeight)) + ')'; 
+            });
 
 
         // Axis whiteout
@@ -118,7 +127,7 @@ angular.module('portal')
 
 
         // Section Labels
-        var categories = charts.append('text')
+        var labels = charts.append('text')
           .attr('text-anchor', 'end')
           .attr('x', -5)
           .attr('y', function (d,i) {
@@ -128,14 +137,14 @@ angular.module('portal')
           .attr('class', titleClass)
           .call(chartUtils.wrap, titleSpace); 
 
-        categories.call(chartUtils.wrap, titleSpace);
+        labels.call(chartUtils.wrap, titleSpace);
 
         // Draw Hoziontal Bars for each subset of data
         var bars = charts.selectAll('rect.bar')
           .data(function (d) { return d.scores; }).enter()
           .append('rect')
           .attr('class', function (d) {
-            return appendNameToClass ? 'bar ' + barClass + ' ' + d.name.replace('_', '-') : 'bar ' + barClass;
+            return appendNameToClass ? 'bar ' + barClass + ' ' + d.user.replace('_', '-') : 'bar ' + barClass;
           })
           .attr('height', barHeight)
           .attr('width', 0)
@@ -149,7 +158,7 @@ angular.module('portal')
           .data(function (d) { return d.scores; }).enter()
           .append('text')
           .attr('class', function (d) { 
-            return appendNameToClass ? 'score-text ' + d.name.replace('_', '-') : 'score-text';
+            return appendNameToClass ? 'score-text ' + d.user.replace('_', '-') : 'score-text';
           })
           .attr('text-anchor', function (d) {
             var anchor;

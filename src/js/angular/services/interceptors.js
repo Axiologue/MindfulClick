@@ -1,5 +1,5 @@
 angular.module('portal')
-.factory('tokenCleaner', ['$location', '$injector', '$cookies', function ($location, $injector, $cookies) {
+.factory('tokenCleaner', ['$injector', '$cookies', '$rootScope', '$q', function ($injector, $cookies, $rootScope, $q) {
   var interceptor = {
      responseError: function(response) {
       if (response.status === 401 && response.data) {
@@ -9,10 +9,11 @@ angular.module('portal')
 
           var http = $injector.get('$http');
           delete http.defaults.headers.common.Authorization;
-
-          $location.path('/');
+          $rootScope.$broadcast("djangoAuth.logged_out");
         }
       }
+
+      return $q.reject(response);
     }
   }
 

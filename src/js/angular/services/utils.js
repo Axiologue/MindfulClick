@@ -12,7 +12,7 @@ angular.module('portal')
   services.wrap = function (text, width) {
     text.each(function() {
       var text = d3.select(this),
-          words = text.data()[0].category.toUpperCase().split(/\s+/).reverse(),
+          words = text.data()[0].label.toUpperCase().split(/\s+/).reverse(),
           word,
           line = [],
           lineNumber = 0,
@@ -58,18 +58,18 @@ angular.module('portal')
     return _categoryIcons;
   };
 
-  services.parseScores = function (scores) {
+  services.parseSingleScores = function (scores) {
     var data = [];
 
     for (var j=0; j < scores[0].categories.length + 1; j++) { 
       var category = {
-        'category': j === 0 ? 'overall' : scores[0].categories[j-1].category,
+        'label': j === 0 ? 'overall' : scores[0].categories[j-1].category,
         'scores': []
       };
 
       for (var i=0; i < scores.length; i++) {
         var score = {
-          'name': scores[i].user,
+          'user': scores[i].user,
           'score': j === 0 ? scores[i].overall : scores[i].categories[j-1].score
         };
        
@@ -80,6 +80,38 @@ angular.module('portal')
     }
 
     return data;
+  };
+
+  services.parseMultiScores = function (scores) {
+    var data = [];
+
+    for (var i=0; i < scores.length; i++) {
+      var dataPoint = {'label': scores[i].Company.name, 'scores': []};
+
+      for (var j=0; j < scores[i].scores.length; j++) {
+        dataPoint.scores.push({'user': scores[i].scores[j].user, 'score': scores[i].scores[j].overall});
+      }
+
+      data.push(dataPoint);
+    }
+
+    return data;
+  };
+
+  return services;
+}]);
+
+angular.module('portal')
+.factory('LinkStore', [function () {
+  var services = {},
+      _storedLink = "/";
+
+  services.set = function (link) {
+    _storedLink = link;
+  };
+
+  services.get = function () {
+    return _storedLink;
   };
 
   return services;

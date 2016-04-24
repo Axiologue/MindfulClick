@@ -31,6 +31,9 @@ portal.config(['$routeProvider',
       .when('/signUp', {
         templateUrl: 'templates/auth/signup.html',
       })
+      .when('/forbidden', {
+        templateUrl: 'templates/auth/forbidden.html',
+      })
       .when('/verifyEmail/:emailVerificationToken', {
         templateUrl: 'templates/auth/verifyemail.html',
       })
@@ -44,6 +47,14 @@ portal.config(['$routeProvider',
         controller: 'CompanyDetailCtrl',
         templateUrl: 'templates/company_detail.html',
       })
+      .when('/companies/all', {
+        controller: 'CompanyAllCtrl',
+        templateUrl: 'templates/company_all.html',
+      })
+      .when('/products/search', {
+        controller: 'ProductSearchCtrl',
+        templateUrl: 'templates/product_search.html',
+      })
       .when('/products/detail/:productID', {
         controller: 'ProductDetailCtrl',
         templateUrl: 'templates/product_detail.html',
@@ -56,8 +67,28 @@ portal.config(['$routeProvider',
         controller: 'BlogDetailCtrl',
         templateUrl: 'templates/blog_detail.html'
       })
+      .when('/account', {
+        templateUrl: 'templates/auth/userprofile.html',
+        resolve: {
+          authenticated: ['djangoAuth', function(djangoAuth){
+            return djangoAuth.authenticationStatus(true);
+          }],
+        }
+      })
+      .when('/profile', {
+        controller: 'ProfileCtrl',
+        templateUrl: 'templates/ethics_profile.html',
+        resolve: {
+          authenticated: ['djangoAuth', function(djangoAuth){
+            return djangoAuth.authenticationStatus(true);
+          }],
+        }
+      })
+      .when('/404', {
+        templateUrl: 'templates/404.html'
+      })
       .otherwise({
-          redirectTo: '/'
+          redirectTo: '/404'
       });
 
 }]);
