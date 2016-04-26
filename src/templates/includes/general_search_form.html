@@ -1,0 +1,14 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2" ng-controller="GeneralSearchFormCtrl">
+      <form id="general-search-form" class="form-black" ng-submit="generalSearch()">
+        <div class="input-group">
+          <label class="sr-only" for="landing-search">Search for Shoes, Brands, or References</label> 
+          <input type="text" name="landing-search" id="landing-search" class="form-control" placeholder="Search Shoes, Brands, or References.." ng-model="search.query">
+          <div class="input-group-btn"><button type="submit" value="go" class="btn"><i class="fa fa-fw fa-search"></i></button></div>
+        </div>
+      </form>
+      <hr />
+    </div>
+  </div>
+</div>

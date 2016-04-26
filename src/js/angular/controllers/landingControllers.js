@@ -1,5 +1,7 @@
 angular.module('portal')
 .controller('RecentCtrl', ['$scope', 'Landing', function ($scope, Landing) {
+  $scope.search = { query: '' };
+
   var populateRecent = function (response) {
     $scope.events = response[2].events;
     $scope.tags = response[1].tags;
@@ -12,3 +14,5 @@ angular.module('portal')
 
   Landing.recentData(populateRecent);
 }]);
+
+

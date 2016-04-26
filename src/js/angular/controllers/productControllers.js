@@ -43,11 +43,11 @@ angular.module('portal')
 }]);
 
 angular.module('portal')
-.controller('ProductSearchCtrl', ['$scope', 'Product', 'Company', function ($scope, Product, Company) {
+.controller('ProductSearchCtrl', ['$scope', 'Product', 'Company', 'Includes', function ($scope, Product, Company, Includes) {
   $scope.companies = Company.getAll();
   $scope.divisions = Product.getDivisions();
   $scope.categories = Product.getCategories();
-  $scope.productFormTemplate = 'templates/includes/product_form.html';
+  $scope.productFormTemplate = Includes.get('productForm');
   $scope.state = { 
     priceRange: true,
     showToggle: true,

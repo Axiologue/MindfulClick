@@ -6,7 +6,7 @@ var portal = angular.module('portal', [
     'ngAnimate',
     'ngRoute',
     'ngCookies',
-    'hc.marked'
+    'hc.marked',
 ]);
 
 // Resource settings
@@ -66,6 +66,14 @@ portal.config(['$routeProvider',
       .when('/blog/detail/:postName', {
         controller: 'BlogDetailCtrl',
         templateUrl: 'templates/blog_detail.html'
+      })
+      .when('/search/general', {
+        controller: 'GeneralSearchCtrl',
+        templateUrl: 'templates/search_empty.html'
+      })
+      .when('/search/general/:searchQuery', {
+        controller: 'GeneralSearchCtrl',
+        templateUrl: 'templates/search_results.html'
       })
       .when('/account', {
         templateUrl: 'templates/auth/userprofile.html',

@@ -16,13 +16,13 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
               <!-- First Item -->
-              <div class="item active" style="background-image: url('img/headers/GrayWalking.jpg');">
+              <div class="item active" style="background-image: url('img/headers/GrayWalking.jpg');" ng-controller="GeneralSearchFormCtrl">
                 <div class="carousel-caption caption-right carousel-caption-search">
                   <h2>Which Shoes Match Your Ethics?</h2>
-                  <form class="form-white">
+                  <form class="form-white" ng-submit="generalSearch()">
                     <div class="input-group">
                       <label class="sr-only" for="landing-search">Search</label> 
-                      <input type="text" name="landing-search" id="landing-search" class="form-control" placeholder="Search Shoes, Brands, or References.." >
+                      <input type="text" name="landing-search" id="landing-search" class="form-control" placeholder="Search Shoes, Brands, or References.." ng-model="search.query">
                       <div class="input-group-btn"><button type="submit" value="go" class="btn"><i class="fa fa-fw fa-search"></i></button></div>
                     </div>
                   </form>

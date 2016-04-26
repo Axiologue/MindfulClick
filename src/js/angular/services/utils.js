@@ -116,3 +116,18 @@ angular.module('portal')
 
   return services;
 }]);
+
+angular.module('portal')
+.factory('Includes', [function () {
+  var services = {},
+      _includes = {
+        generalSearchForm: 'templates/includes/general_search_form.html',
+        productForm: 'templates/includes/product_form.html'
+      };
+
+  services.get = function (templateName) {
+    return _includes[templateName];
+  };
+
+  return services;
+}]);

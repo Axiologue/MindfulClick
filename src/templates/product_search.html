@@ -14,17 +14,19 @@
         <span class="sr-only">Loading...</span>
       </div>
       <div ng-hide="state.loading">
-        <ul ng-show="results.length > 0" class="search-list">
-          <li ng-repeat="product in results" class="search-product">
+        <div class="row search-list" ng-show="results.length > 0" >
+          <div ng-repeat="product in results" class="search-item col-xs-12 col-sm-6">
             <a href="#/products/detail/{{ product.id }}">
-              <img class="brand-thumbnail" src="img/Logos/{{ product.company.replace(' ','-') }}-small-black.png" />
+              <div class="search-image">
+                <img class="brand-thumbnail" src="img/Logos/{{ product.company.replace(' ','-') }}-small-black.png" />
+              </div>
               <div class="search-content">
                 <strong><h4 class="search-header">{{product.name}}</h4></strong>
                 <span class="text-muted">{{ product.company }}</span>
               </div>
             </a>
-          </li>
-        </ul>
+          </div>
+        </div>
         
         <div ng-hide="results.length > 0" class="text-center">
           <h2>No Products Found that Match Your Search</h2>

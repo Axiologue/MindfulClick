@@ -254,6 +254,20 @@ select {
   border: #000 solid 1px;
 }
 
+.form-black .input-group-btn .btn {
+  border-radius: 0;
+  background: none;
+  border: #000 solid 1px;
+  -webkit-transition: all .35s;
+  -moz-transition: all .35s;
+  transition: all .35s;
+}
+
+.carousel-caption .input-group-btn .btn:hover {
+  background: #f05f40;
+  color: #fff;
+}
+
 .form-white input::-webkit-input-placeholder {
   color: #ddd !important;
   font-family: "fira-sans-2", "Helvetica Neue", Helvetica, sans-serif;
@@ -1086,44 +1100,19 @@ a:hover .horizontal-bar-title {
 
 /* Search Styling */
 
-.search-list {
-  list-style: none;
-  width: 100%;
-  padding: 0;
-}
-
-.search-list > li {
-  display: inline-block;
-  position: relative;
-  width: 100%;
-}
-
-@media (min-width: 768px) { 
-  .search-list > li {
-    width: 50%;
-  }
-}
-
-@media (min-width: 992px) { 
-  .search-list > li {
-    width: 33%;
-  }
-}
-
-.search-list > li > a {
-  display: block;
-  position: relative;
+.search-list > .search-item > a{
+  display: table;
   border: 1px solid transparent;
   background: transparent;
   width: 100%;
-  height: 65px;
   padding: 5px;
   -webkit-transition: all .5s;
   -moz-transition: all .5s;
   transition: all .5s;
 }
 
-.search-list > li > a:hover {
+
+.search-list > .search-item > a:hover {
   border: 1px solid #000;
   background: #f05f40;
   color: #fff;
@@ -1132,22 +1121,19 @@ a:hover .horizontal-bar-title {
   transition: all .5s;
 }
 
-.search-list > li > a:hover .text-muted {
+.search-list > .search-item > a:hover .text-muted {
   color: #ddd;
 }
 
-.search-list .brand-thumbnail {
-  position: absolute;
-  display: block;
-  top: 5px;
-  left: 5px;
+.search-list .search-image {
+  display: table-cell;
+  width: 65px;
+  height: 50px;
 }
 
 .search-list .search-content {
-  position: absolute;
-  display: block;
-  top: 10px;
-  left: 65px;
+  vertical-align: top;
+  display: table-cell;
 }
 
 .search-list .search-header {
@@ -1156,3 +1142,40 @@ a:hover .horizontal-bar-title {
   margin-top: 0;
 }
 
+#general-search-form {
+  margin-top: 20px;
+}
+
+.result-counts {
+  font-family: fira-sans-2, Helvetica, sans;
+  width: 100%;
+}
+
+.result-counts ul {
+  padding: 0;
+  list-style: none;
+}
+
+.result-counts li {
+  display: inline-block;
+  padding-left: 20px;
+  width: 49%;
+}
+
+@media (min-width: 768px) { 
+  .result-counts li {
+    width: 24%;
+  }
+}
+
+.search-controls {
+  margin-top: 20px;
+}
+
+.search-controls h5 {
+  display: inline-block;
+}
+
+.result-set hr {
+  margin: 0;
+}

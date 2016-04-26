@@ -1,0 +1,111 @@
+<div ng-controller="SearchResultsCtrl" id="top">
+  <div ng-include="generalSearchForm"></div>
+
+  <section class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+        <div class="text-center" ng-show="state.loading">
+          <i class="fa fa-spinner fa-pulse fa-4x"></i>
+          <span class="sr-only">Loading...</span>
+        </div>
+
+        <div ng-hide="state.loading">
+          <div class="result-counts">
+            <ul>
+              <li><strong>RESULTS FOUND:</strong></li>
+              <li ng-repeat="key in result_keys"><a href="" ng-click="goToHash(key)">{{ key.toUpperCase() }}: <strong>{{ results[key].length }}</strong></a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Companies -->
+        <div class="result-set" ng-show="results.companies.length > 0" id="companies">
+          
+          <div class="row">
+            <div class="col-xs-6">
+              <h3>Companies</h3>
+            </div>
+            <div class="col-xs-6 text-right search-controls">
+              <span class="text-muted"><a href="" ng-click="goToHash('top')"><h5>(Back to Top)</h5></a></span>
+              <span class="text-muted"><a type="button" href="" data-toggle="collapse" data-target="#company-data" aria-expanded="true" aria-controls="company-data"><h5>(Hide)</h5></a></span>
+            </div>
+            <div class="col-xs-12">
+              <hr />
+            </div>
+          </div>
+          <div class="row search-list collapse in" id="company-data">
+            <div ng-repeat="result in results.companies" class="search-item col-xs-12 col-sm-6" >
+              <a href="#/companies/detail/{{ result.text.replace(' ','-') }}">
+                <div class="search-image">
+                  <img class="brand-thumbnail" src="img/Logos/{{ result.text.replace(' ','-') }}-small-black.png" />
+                </div>
+                <div class="search-content">
+                  <strong><h4 class="search-header">{{result.text}}</h4></strong>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Products -->
+        <div class="result-set" ng-show="results.products.length > 0" id="products">
+          
+          <div class="row">
+            <div class="col-xs-6">
+              <h3>Products</h3>
+            </div>
+            <div class="col-xs-6 text-right search-controls">
+              <span class="text-muted"><a href="" ng-click="goToHash('top')"><h5>(Back to Top)</h5></a></span>
+              <span class="text-muted"><a type="button" href="" data-toggle="collapse" data-target="#product-data" aria-expanded="true" aria-controls="product-data"><h5>(Hide)</h5></a></span>
+            </div>
+            <div class="col-xs-12">
+              <hr />
+            </div>
+          </div>
+          <div class="row search-list collapse in" id="product-data">
+            <div class="search-item col-xs-12 col-sm-6" ng-repeat="result in results.products">
+              <a href="#/products/detail/{{ result.id }}">
+                <div class="search-image">
+                  <img class="brand-thumbnail" src="img/Logos/{{ result.text[1].replace(' ','-') }}-small-black.png" />
+                </div>
+                <div class="search-content">
+                  <strong><h4 class="search-header">{{result.text[0] }}</h4></strong>
+                  <span class="text-muted">{{ result.text[1] }} | {{ result.text[2] }} | {{ result.text[3] }}</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- References -->
+        <div class="result-set" ng-show="results.references.length > 0" id="references">
+          
+          <div class="row">
+            <div class="col-xs-6">
+              <h3>References</h3>
+            </div>
+            <div class="col-xs-6 text-right search-controls">
+              <span class="text-muted"><a href="" ng-click="goToHash('top')"><h5>(Back to Top)</h5></a></span>
+              <span class="text-muted"><a type="button" href="" data-toggle="collapse" data-target="#reference-data" aria-expanded="true" aria-controls="reference-data"><h5>(Hide)</h5></a></span>
+            </div>
+            <div class="col-xs-12">
+              <hr />
+            </div>
+          </div>
+          <div class="row search-list collapse in" id="reference-data">
+            <div class="search-item col-xs-12" ng-repeat="result in results.references">
+              <a href="#/references/detail/{{ result.id }}">
+                <div class="search-content">
+                  <strong><h4 class="search-header">{{result.text[0] }}</h4></strong>
+                  <span class="text-muted">{{ result.text[1] }}</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
