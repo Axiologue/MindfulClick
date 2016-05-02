@@ -75,6 +75,24 @@ portal.config(['$routeProvider',
         controller: 'GeneralSearchCtrl',
         templateUrl: 'templates/search_results.html'
       })
+      .when('/references/all', {
+        controller: 'AllReferenceCtrl',
+        templateUrl: 'templates/reference_list.html'
+      })
+      .when('/references/how-to', {
+        templateUrl: 'templates/how_to.html'
+      })
+      .when('/forum/main', {
+        templateUrl: 'templates/coming_soon.html'
+      })
+      .when('/references/detail/:referenceID', {
+        controller: 'ReferenceDetailCtrl',
+        templateUrl: 'templates/reference_detail.html'
+      })
+      .when('/tags/all', {
+        controller: 'TagListCtrl',
+        templateUrl: 'templates/tag_list.html'
+      })
       .when('/account', {
         templateUrl: 'templates/auth/userprofile.html',
         resolve: {

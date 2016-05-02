@@ -1,0 +1,66 @@
+<section class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-2 col-lg-8 col-lg-offset-2">
+      <h2 class="title-block title-black">Sources</h2>
+
+      <form class="form-black">
+        <div class="form-group">
+          <label class="checkbox-inline">
+            <input type="checkbox" ng-model="filtering.includeTagged">Include Analyzed Sources
+          </label>
+
+          <label class="checkbox-inline">
+            <input type="checkbox" ng-model="filtering.includeUntagged">Include Unanalyzed Sources
+          </label>
+          
+          <label class="checkbox-inline">
+            <input type="checkbox" ng-model="filtering.includeNoData">Include Sources Without Concrete Data
+          </label>
+        </div>
+        <div class="form-group">
+          <label class="sr-only" for="textFilter">Filter by source title, notes, etc..."</label>
+          <input type="text" ng-model="filtering.text" class="form-control" id="textFilter" placeholder="Filter by source title, notes, etc...">
+        </div>
+      </form>
+      
+      <hr >
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-2 col-lg-8 col-lg-offset-2 reference-list">
+      <uib-accordion close-others="true">
+
+      <uib-accordion-group ng-repeat="reference in filteredSources = (references | filter: filterReferences)" is-open="status[reference.id]" class="reference-item">
+          <uib-accordion-heading >
+          {{ reference.title }} 
+          <i class="fa pull-right" ng-class="{'fa-minus-square-o': status[reference.id], 'fa-plus-square-o': !status[reference.id]}"></i>
+          <span class="reference-header-detail">({{ reference.header_text }})</span>
+          </uib-accordion-heading>
+          
+          <dl class="dl-horizontal reference-detail">
+            <dt>URL</dt>
+            <dd><a href="{{ reference.url }}" target="_newtab">{{ reference.url }}</a></dd>
+            <dt>NOTES</dt>
+            <dd>{{ reference.notes }}</dd>
+            <dt>DATA</dt>
+            <dd ng-show="reference.metatags.length > 0">Article Marked As Having No Relevant Data.  It is still stored here as a reference.</dd>
+            <dd ng-show="reference.metatags.length === 0 && reference.ethicstags.length === 0">This reference hasn't been analyzed yet.  Help us out by <a href="#/references/detail/{{ reference.id }}">adding a tag</a></dd>
+            <dd ng-repeat="tag in reference.ethicstags"><strong>{{ tag.tag_type.name }}</strong> ({{ tag.tag_type.subcategory }}) <br />
+            <span class="text-muted">"{{ tag.excerpt }}"</span></dd>
+            
+          </dl>
+
+          <a class="btn btn-black" href="#/references/detail/{{ reference.id }}">Edit or Analyze This Source</a>
+
+          </uib-accordion-group>
+
+        <div ng-hide="filteredSources.length">
+          <h3 class="text-center">No Results Match Your Filters.  Try Adjusting Your Filtering Criteria</h3>
+        </div>
+      </uib-accordion>
+
+      
+    </div>
+  </div>
+</section>

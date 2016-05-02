@@ -1,0 +1,12 @@
+        <div class="reference-company-icon">
+          <a href="#/companies/detail/{{ tag.company.replace(' ', '-') }}">
+            <img src="img/Logos/{{ tag.company.replace(' ', '-') }}-small-white.png" class="brand-thumbnail" />
+          </a>
+        </div>
+        <h4 class="tag-type"><strong>{{ tag.tag_type.name }}<span ng-show="tag.value">: {{tag.value}}</span></strong> <span class="text-muted">({{ tag.tag_type.subcategory }})</span></h4>
+        <p class="text-muted">
+          "{{ tag.excerpt }}"
+        </p>
+  
+        <button class="btn btn-borderless" ng-click="editTag()"><i class="fa fa-edit"></i> Edit Tag</button>
+        <button class="btn btn-borderless"><i class="fa fa-times"></i> Delete Tag</button>

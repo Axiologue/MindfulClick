@@ -122,7 +122,11 @@ angular.module('portal')
   var services = {},
       _includes = {
         generalSearchForm: 'templates/includes/general_search_form.html',
-        productForm: 'templates/includes/product_form.html'
+        productForm: 'templates/includes/product_form.html',
+        tagForm: 'templates/includes/tag_form.html',
+        tagDetail: 'templates/includes/tag_detail.html',
+        referenceForm: 'templates/includes/reference_form.html',
+        referenceDetail: 'templates/includes/reference_detail.html'
       };
 
   services.get = function (templateName) {

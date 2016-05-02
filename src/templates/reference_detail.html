@@ -1,0 +1,26 @@
+<section class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+      <div class="reference-detail-title-wrapper">
+        <div ng-include="reference_template"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="dark-row">
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+
+      <h3 class="title-block title-white">Ethical Data From This Reference</h3> 
+
+      <div class="reference-tag-detail" ng-repeat="tag in reference.ethicstags" ng-controller="SingleTagCtrl">
+        <div ng-include="tag_template"></div>  
+      </div>
+
+      <button class="btn btn-white">Add New Tag</button>
+
+      <hr />
+    </div>
+  </div>
+</div>

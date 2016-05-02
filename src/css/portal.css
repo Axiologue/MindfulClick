@@ -75,6 +75,23 @@ a.orange:hover, a.orange:focus {
   background: #f05f40;
 }
 
+.dark-row .btn-orange,
+.btn-orange {
+  background: none;
+  border: 1px solid #f05f40;
+  border-radius: 0;
+  color: #f05f40;
+  -webkit-transition: all .35s;
+  -moz-transition: all .35s;
+  transition: all .35s;
+}
+
+.dark-row .btn-orange:hover,
+.btn-orange:hover {
+  color: #fff;
+  background: #f05f40;
+}
+
 .btn-borderless {
   background: none;
   border: none;
@@ -187,6 +204,18 @@ section {
   transition: all .5s;
 }
 
+.fa-outline-dark-gray-on-white {
+  color: #fff;
+  text-shadow: -1px -1px 0 #999,
+                1px -1px 0 #999,
+               -1px 1px 0 #999,
+                1px 1px 0 #999;
+  margin: 20px 20px;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  transition: all .5s;
+}
+
 .text-large {
   font-size: 18px;
 }
@@ -238,7 +267,9 @@ select {
 .form-white input[type="last_name"],
 .form-white input[type="username"],
 .form-white input[type="password"],
-.form-white input[type="email"] {
+.form-white input[type="email"],
+.form-white textarea,
+.form-white select {
   background: rgba(255, 255, 255, .0);
   border: #fff solid 1px;
 }
@@ -621,6 +652,49 @@ select {
   right: 10%;
 }
 
+/* PRINCIPLES LIST STYLING */
+
+#whatIs {
+  font-size: 18px;
+}
+
+ul.principles-list {
+  margin-left: 0;
+  margin-top: 30px;
+}
+
+.principles-list >  li {
+  margin-left: 2.14285714em;
+  width: 100%;
+  display: inline-block;
+  float: left;
+  margin-bottom: 20px;
+  padding-right: 20px;
+}
+
+@media (min-width: 768px) {
+  .principles-list > li {
+    width: 45%;
+  }
+}
+
+.principles-list li h4 {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* WHO IS AXIOLOGIE STYLING */
+
+#whoIs {
+  font-size: 18px;
+}
+
+.btn-help {
+  margin: 20px auto;
+  font-family: fira-sans-2, Helvetica, sans;
+  font-weight: 600;
+}
+
 /* RECENT LIST STYLING */
 
 .recent-list {
@@ -702,10 +776,6 @@ h4.panel-title {
 
 .panel a:focus {
   color: #000;
-}
-
-.fa-ul li {
-  margin-bottom: 10px;
 }
 
 /* LANDING FOOTER STYLING */
@@ -1178,4 +1248,87 @@ a:hover .horizontal-bar-title {
 
 .result-set hr {
   margin: 0;
+}
+
+/* REFERENCE LIST STYLING */
+
+
+.reference-item .reference-header-detail {
+  color: #999;
+  font-size: 12px;
+}
+
+dl.reference-detail dd {
+  margin-bottom: 10px;
+}
+
+@media (min-width: 768px) {
+  dl.reference-detail dt {
+    width: 60px;
+  }
+  
+  dl.reference-detail dd {
+    margin-left: 80px;
+  }
+}
+
+.reference-list .panel-group {
+  margin-top: 0;
+}
+
+.reference-list .btn {
+  text-decoration: none;
+}
+
+/* REFERENCE DETAIL STYLING */
+
+.reference-detail-title-wrapper {
+  margin-top: 50px;
+  font-size: 20px;
+  font-family: fira-sans-2, Helvetica, sans;
+  border: 1px #000 solid;
+  padding: 10px;
+}
+
+.reference-detail-buttons {
+  display: block;
+  text-align: right;
+}
+
+.reference-header {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.reference-tag-detail {
+  margin-bottom: 30px;
+}
+
+.reference-company-icon a {
+  width: 100%;
+  height: 100%;
+}
+
+.reference-company-icon:hover {
+  background: #f05f40;
+}
+
+.reference-company-icon {
+  float: left;
+  margin-right: 20px;
+}
+
+/* TAG LIST STYLING */
+
+#ethics-list .tag-list-title {
+  margin-bottom: 30px; 
+  margin-top: 50px;
+}
+
+#ethics-list .tag-list-icon {
+  margin-right: 20px;
+}
+
+#ethics-list .tag-block-header {
+  margin-bottom: 20px;
 }

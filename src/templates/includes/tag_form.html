@@ -1,0 +1,72 @@
+        <!-- Add Tag Form -->
+        <div class="tag-form"  ng-controller="TagFormCtrl">
+          <h3 class="text-danger" ng-show="error.error">{{error.msg}}</h3>
+          <form ng-submit="tagSubmit()" class="form-white">
+            <div class="form-group">
+              <label for="{{'companies' + reference.id}}">COMPANY:</label>
+              <div class="fa-label">
+                <select ng-model="newTag.company" class="form-control" ng-options="company.id as company.name for company in companies" ng-change="clearProducts()">
+                  <option value="">---- Select Company ----</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group" ng-controller="ProductAutoCtrl" ng-show="newTag.company">
+              <angucomplete-alt id="{{'products' + reference.id}}"
+                                placeholder="Select a Product"
+                                pause="400"
+                                selected-object="selectedProduct"
+                                remote-url="{{productListUrl}}"
+                                remote-url-data-field="products"
+                                title-field="name"
+                                input-class="form-control" 
+                                template-url="templates/includes/product_autoinclude.html"
+                                clear-selected="true" />
+                
+                              </div>
+
+            <div class="form-group">
+              <div class="btn-group addedProducts" role="group" ng-repeat="product in newTag.products">
+                <button class="btn btn-sm btn-addProductName">{{product.name}}</button>
+                <button class="btn btn-sm btn-addProductDismiss" ng-click="removeProduct($event,product)"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="{{'categories' + reference.id}}">CATEGORY:</label>
+              <div class="fa-label">
+                <select ng-model="newTag.subcategory" class="form-control" ng-options="category.id as category.name group by category.category for category in categories" ng-change="loadFacts()">
+                  <option value="">---- Select Ethics Category ----</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="{{'companies' + reference.id}}">TAG TYPE:</label>
+              <div class="fa-label">
+                <select ng-model="newTag.tag_type" class="form-control" ng-options="tagType.id as tagType.name for tagType in tagTypes">
+                  <option value="">---- Select Tag Type ----</option>
+                </select>
+              </div>
+              <p class="help-block">Don't see the tag you want? <a ng-click="showNewTagType($event)">Add it!</a></p>
+            </div>
+
+            <div class="form-group" ng-show="tagFormState.addTagType">
+              <label for="{{'newTagType' + reference.id}}">NEW TAG TYPE:</label>
+              <input type="text" ng-model="newTagType.name" class="form-control" placeholder="Enter Your New Tag Here" id="{{'newTagType' + reference.id}}">
+              <button class="btn btn-white" ng-click="submitTagType($event)">Add Tag Type</button>
+            </div>
+
+            <div class="form-group" ng-show="newTag.tag_type">
+                <label for="{{'NewTagValue' + reference.id}}">VALUE (Only for relevant tags):</label>
+                <input type="text" ng-model="newTag.value" class="form-control" placeholder="Enter amount for tag modifier" id="{{'NewTagValue' + reference.id}}">
+            </div>
+
+            <div class="form-group">
+              <label for="{{'excerpt' + reference.id}}">EXCERPT:</label>
+              <textarea rows="3" ng-model="newTag.excerpt" name="notes" id="{{'excerpt' + reference.id}}" class="form-control"></textarea>
+            </div>
+            <input type="submit" class="btn btn-white" value="Submit">
+            <button class="btn btn-white" ng-click="tagCancel($event)">Cancel</button>
+          </form>
+        </div>

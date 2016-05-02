@@ -50,9 +50,20 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#/products/search">Products</a></li>
-            <li><a href="#/companies/all">Companies</a></li>
-            <li><a href="#/references/all">References</a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products <i class="fa fa-angle-down"></i></a>
+              <ul class="dropdown-menu">
+                <li><a href="#/products/search">Search Products</a></li>
+                <li><a href="#/companies/all">Compare Companies</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sources <i class="fa fa-angle-down"></i></a>
+              <ul class="dropdown-menu">     
+                <li><a href="#/references/all">Browse Sources</a></li>
+                <li><a href="#/tags/all">Browse Data</a></li>
+              </ul>
+            </li>
             <li><a href="#/blog/all">Blog</a></li>
             <li><a href="#/forum/main">Forum</a></li>
             <li ng-hide="authenticated"><div class="nav-button"><a class="btn btn-black navbar-btn" href="#/login">Sign In</a></div></li>

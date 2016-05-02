@@ -1,0 +1,18 @@
+        <dl class="dl-horizontal reference-detail-title">
+          <dt>Title:</dt>
+          <dd>{{ reference.title }}</dd>
+
+          <dt>Url:</dt>
+          <dd><a href="{{ reference.url }}" target="_newtab">{{ reference.url }}</a></dd>
+
+          <dt>Notes:</dt>
+          <dd>{{ reference.notes }}</dd>
+
+          <dt class="text-muted"><em>Added By:</em></dt>
+          <dd class="text-muted"><em>{{ reference.added_by }}</em></dd>
+        </dl>
+
+        <div class="reference-detail-buttons">
+          <button class="btn btn-black" ng-click="editReference()">Edit Reference</button>
+          <button class="btn btn-black">Delete Reference</button>
+        </div>

@@ -101,3 +101,8 @@ angular.module('portal')
     $('#productFormCollapse').collapse('toggle'); 
   }
 }]);
+
+angular.module('portal')
+.controller('ProductAutoCtrl', ['$scope', function ($scope) {
+
+}]);

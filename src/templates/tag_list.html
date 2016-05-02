@@ -1,0 +1,44 @@
+<section class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 tag-list" id="ethics-list">
+      <h2 class="title-block title-black">Current Ethical Data</h2>
+
+        <div ng-repeat="category in tags">
+          <h4 class="tag-list-title">{{ category.category.toUpperCase() }}</h4>
+          <ul>
+            <li ng-show="category.tags.length === 0">
+            <h5 class="no-data">No Data in this category.  You can <a href="#/references/how-to">help us</a> research!</h5>
+            </li>
+            <li ng-repeat="tag in category.tags">
+              <div class="tag-block tag-block-header">
+                <div class="tag-list-icon">
+                  <img class="brand-thumbnail" src="img/Logos/{{ tag.company.replace(' ', '-') }}-small-black.png" />
+                </div>
+                <h5 class="tag-type">{{ tag.company }} -- <strong>{{ tag.tag_type }}<span ng-show="tag.value">: {{tag.value}}</span></strong> </h5>
+                <span class="text-muted">
+                  From: <a href="#/references/detail/{{ tag.reference.id }}">{{ tag.reference.title }}</a> 
+                  (<a href="{{ tag.reference.url }}" target="_newtab">External Link</a>) 
+                  (<a role="button" data-target="#tag-detail-{{tag.id}}" data-toggle="collapse" aria-expanded="false" aria-controls="tag-detail-{{tag.id}}">See More</a>)
+                </span>
+              </div>
+
+              <div class="tag-block">
+                <div class="collapse" id="tag-detail-{{tag.id}}">
+                  <div class="tag-detail-content">
+                    <dl class="dl-horizontal">
+                      <dt>EXCERPT</dt> 
+                      <dd>"{{ tag.excerpt }}"</dd>
+                      <dt>ADDED BY</dt> 
+                      <dd><span class="text-muted"><a href="#/users/{{ tag.added_by }}">{{ tag.added_by }}</a> at {{ tag.submitted_at }}</span></dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+
+            </li>
+          </ul>
+        </div>
+
+    </div>
+  </div>
+</section>

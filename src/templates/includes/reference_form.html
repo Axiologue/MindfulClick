@@ -1,0 +1,27 @@
+        <!-- Article update form -->
+        <div class="reference-form form-black">
+          <h3 class="text-danger" ng-show="error.error">{{error.msg}}</h3>
+          <h3 class="text-success" ng-show="success.success">{{success.msg}}</h3>
+          <form ng-submit="referenceSubmit()">
+
+            <div class="form-group">
+              <label for="{{'title' + reference.id}}">TITLE:</label>
+              <input type="text" id="{{'title' + reference.id}}" ng-model="tempReference.title" name="title" class="form-control"  >
+            </div>
+
+            <div class="form-group">
+              <label for="{{'url' + reference.id}}">URL:</label>
+              <input type="text" id="{{'url' + reference.id}}" ng-model="tempReference.url" name="url" class="form-control"  >
+            </div>
+
+            <div class="form-group">
+              <label for="{{'notes' + reference.id}}">NOTES:</label>
+              <textarea rows="3" ng-model="tempReference.notes" name="notes" id="{{'notes' + article.id}}" class="form-control"></textarea>
+            </div>
+
+            <input type="submit" class="btn btn-black" value="Submit">
+            <button class="btn btn-black" ng-click="referenceCancel($event)">Cancel</button>
+            
+          </form>
+          
+        </div>
