@@ -1,0 +1,40 @@
+<section class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+
+      <div ng-show="user.initial_answers">
+        <h2 class="title-block title-black">Profile Already Set!</h2>
+
+        <p>If you're seeing this message, it means you've already set your initial profile! If you want to further tweak your profile, you can go to your <a href="#/profile">profile page</a>.  Otherwise, use the menu above to browse our data or look up a product!</p>
+      </div>
+
+      <div ng-hide="user.initial_answers">
+        <h2 class="title-block title-black">Welcome To Axiologue!</h2>
+
+        <p>To help you get the most out of your Axiologue experience, we'd like you to answer a few quick questions about your ethical preferences.  We'll use this to set an initial profile, but don't worry -- you'll be able to tweak your answers later!</p>
+
+        <p>We take your privacy very seriously, especially with something as personal as your ethical information.  Your answers to these questions won't be made available (unless you'd like them to be), and are solely used to help make Axiologue as useful for you as possible</p>
+
+        <hr />
+    
+        <form ng-submit="answerQuestions()">
+          <div class="form-group initial-question-form" ng-repeat="question in questions">
+            <h3>{{ question.question }}</h3>
+            <h4 class="text-muted">{{ question.supplement }}</h4>
+            <div ng-repeat="answer in question.answers">
+              <input type="radio" ng-model="question.selected" id="answer_{{ answer.id }}" value="{{ answer.id }}" name="answers_{{ answer.question }}">
+              <label for="answer_{{ answer.id }}">{{ answer.answer }}</label>
+            </div>
+
+          </div>
+
+
+          <div class="alert alert-danger" ng-if="error">{{ error }}</div> 
+
+          <input type="submit" value="Submit Answers" class="btn btn-black" />
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>

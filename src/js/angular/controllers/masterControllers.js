@@ -28,6 +28,10 @@ angular.module('portal')
 
     $scope.$on('djangoAuth.set_profile', function (event, data) {
         $scope.user = data;
+
+        if (!$scope.user.initial_answers) {
+          $location.path('/initial');
+        }
     });
 
     // If the user attempts to access a restricted page, redirect to login page with error.

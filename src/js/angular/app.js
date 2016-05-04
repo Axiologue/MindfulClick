@@ -110,6 +110,23 @@ portal.config(['$routeProvider',
           }],
         }
       })
+      .when('/initial', {
+        controller: 'InitialCtrl',
+        templateUrl: 'templates/initial_questions.html',
+        resolve: {
+          authenticated: ['djangoAuth', function(djangoAuth){
+            return djangoAuth.authenticationStatus(true);
+          }],
+        }
+      })
+      .when('/thanks', {
+        templateUrl: 'templates/thanks.html',
+        resolve: {
+          authenticated: ['djangoAuth', function(djangoAuth){
+            return djangoAuth.authenticationStatus(true);
+          }],
+        }
+      })
       .when('/404', {
         templateUrl: 'templates/404.html'
       })

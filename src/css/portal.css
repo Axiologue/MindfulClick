@@ -683,6 +683,10 @@ ul.principles-list {
   font-weight: 600;
 }
 
+ul.principles-list a {
+  text-decoration: underline;
+}
+
 /* WHO IS AXIOLOGIE STYLING */
 
 #whoIs {
@@ -1331,4 +1335,55 @@ dl.reference-detail dd {
 
 #ethics-list .tag-block-header {
   margin-bottom: 20px;
+}
+
+/* INITIAL QUESTION STYLING */
+
+
+/*
+  Hide radio button (the round disc)
+  we will use just the label to create pushbutton effect
+*/
+.initial-question-form input[type=radio] {
+    display:none; 
+    margin:10px;
+}
+ 
+/*
+  Change the look'n'feel of labels (which are adjacent to radiobuttons).
+  Add some margin, padding to label
+*/
+.initial-question-form input[type=radio] + label {
+  width: 460px;
+  line-height: 1.42857143;
+  margin: 5px -2px;
+  padding: 6px 12px;
+  background-color: #fff;
+  border: 1px solid #454d50;
+  white-space: nowrap;
+  display: block;
+  font-weight: bold;
+  -webkit-transition: all .35s;
+  -moz-transition: all .35s;
+  transition: all .35s;
+}
+
+/*
+ Change background color for label next to checked radio button
+ to make it look like highlighted button
+*/
+.initial-question-form input[type=radio]:checked + label { 
+  background-image: none;
+  background-color: rgba(240, 95, 64, 1);
+  color: #fff;
+}
+
+.initial-question-form input[type=radio] + label:hover,
+.initial-question-form input[type=radio] + label:focus {
+  cursor: pointer;
+}
+
+.initial-question-form input[type=radio]:not(:checked) + label:hover,
+.initial-question-form input[type=radio]:not(:checked) + label:focus {
+  background-color: rgba(240, 95, 64, .6);
 }

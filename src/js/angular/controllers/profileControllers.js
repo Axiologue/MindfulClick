@@ -32,3 +32,28 @@ angular.module('portal')
     Preference.update($scope.newPref, prefSuccess);
   };
 }]);
+
+angular.module('portal')
+.controller('InitialCtrl', ['$scope', 'Question', '$location', function ($scope, Question, $location) {
+  $scope.questions = Question.allWithAnswers();
+
+  $scope.selected = {};
+
+  $scope.answerQuestions = function () {
+    var answers = $scope.questions
+      .filter(function (obj) { return obj.selected })
+      .map(function (obj) { return +obj.selected });
+
+    if (answers.length === $scope.questions.length) {
+      var success = function (response) {
+        $location.path('/thanks');
+      };
+
+      $scope.error = "";
+      Question.initialAnswers(answers, success);
+    } else {
+      $scope.error = "Please select an answer for each question.";
+    }
+  }
+
+}]);
