@@ -8,6 +8,9 @@
   </div>
 </section>
 
+<div ng-include="referenceModal" ng-controller="ReferenceDeleteCtrl"></div>
+
+
 <div class="container-fluid dark-row">
   <div class="row">
     <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
@@ -18,10 +21,13 @@
         <div ng-include="tag_template"></div>  
       </div>
 
-      <div ng-controller="NewTagCtrl">
+      <div ng-controller="NewTagCtrl" ng-show="authenticated">
         <button class="btn btn-white" ng-hide="state.showNewTagForm" ng-click="showTagForm()">Add New Tag</button>
 
         <div ng-include="tagForm" ng-show="state.showNewTagForm"></div>
+      </div>
+      <div ng-hide="authenticated">
+        <a class="btn btn-white" ng-hide="state.showNewTagForm" href="#/login">Login to Edit or Add Tags</a>
       </div>
 
       <hr />

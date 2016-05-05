@@ -92,6 +92,14 @@ portal.config(['$routeProvider',
           }],
         }
       })
+      .when('/references/deleted', {
+        templateUrl: 'templates/reference_deleted.html',
+        resolve: {
+          authenticated: ['djangoAuth', function(djangoAuth){
+            return djangoAuth.authenticationStatus(true);
+          }],
+        }
+      })
       .when('/references/detail/:referenceID', {
         controller: 'ReferenceDetailCtrl',
         templateUrl: 'templates/reference_detail.html'

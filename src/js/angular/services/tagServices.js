@@ -3,7 +3,9 @@ angular.module('portal')
   var services = {},
       _tags = $resource(BaseUrl + 'tags/etags/:tagID/', {}, {
         all: {method: 'GET', params: {tagID: 'list'}, isArray: true},
-        saveMulti: {method: 'POST', params: {tagID: 'new'}, isArray: true}
+        saveMulti: {method: 'POST', params: {tagID: 'new'}, isArray: true},
+        update: {method: 'PATCH'},
+        remove: {method: 'DELETE'}
       });
 
   services.all = function () {
@@ -16,6 +18,29 @@ angular.module('portal')
     } else {
       return _tags.saveMult({}, data, success, failure);
     }
+  }
+
+  services.remove = function (tagID, success) {
+    return _tags.remove({tagID: tagID}, success);
+  };
+
+  services.update = function (data, success, failure) {
+    return _tags.update({tagID: data.id}, data, success, failure);
+  }
+
+  // Fix data coming back from server to match display data
+  services.parseResponse = function (data, cat_id, companies, categories) {
+     // Replace element IDs with actual names
+      data.company = $.grep(companies, function(v) {return v.id === data.company;})[0].name;
+      var category = $.grep(categories ,function(v) {return v.id === cat_id;})[0];
+
+      data.tag_type = {
+        name: $.grep(category.tag_types, function(v) {return v.id === data.tag_type;})[0].name,
+        subcategory: category.name,
+        id: data.tag_type
+      };
+  
+      return data;
   }
 
   return services;

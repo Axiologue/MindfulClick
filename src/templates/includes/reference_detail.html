@@ -12,7 +12,7 @@
           <dd class="text-muted"><em>{{ reference.added_by }}</em></dd>
         </dl>
 
-        <div class="reference-detail-buttons">
+        <div class="reference-detail-buttons" ng-show="authenticated">
           <button class="btn btn-black" ng-click="editReference()">Edit Reference</button>
-          <button class="btn btn-black">Delete Reference</button>
+          <button class="btn btn-black" data-toggle="modal" data-target="#reference-delete">Delete Reference</button>
         </div>

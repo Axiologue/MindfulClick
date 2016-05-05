@@ -8,13 +8,24 @@ angular.module('portal')
 }]);
 
 angular.module('portal')
-.controller('SingleTagCtrl', ['$scope', 'Tag', 'Includes', function ($scope, Tag, Includes) {
+.controller('SingleTagCtrl', ['$scope', 'Tag', 'Includes', 'ArrayTools', function ($scope, Tag, Includes, ArrayTools) {
   $scope.tag_template = Includes.get('tagDetail');
 
   $scope.editTag = function () {
     $scope.tag_template = Includes.get('tagForm');
     $scope.newTag = $.extend({}, $scope.tag);
-    console.log($scope.newTag);
+   // Get company and category ids
+    $scope.newTag.company = $.grep($scope.companies,function(v) {return v.name === $scope.newTag.company;})[0].id;
+    var category = $.grep($scope.categories,function(v) {return v.name === $scope.newTag.tag_type.subcategory;})[0];
+    $scope.newTag.subcategory = category.id;
+
+    // Add the appropriate tagTypes for that category
+    $scope.tagTypes = category.tag_types;
+    $scope.newTag.tag_type = $scope.tag.tag_type.id;
+
+    // Add the attached product if it exists, otherwise set newTag.products to empty
+    $scope.newTag.products = $scope.tag.product ? [$scope.tag.product] : []
+    $scope.newTag.reference = $scope.reference.id;
   };
 
   $scope.tagCancel = function ($event) {
@@ -23,6 +34,60 @@ angular.module('portal')
 
     $scope.tag_template = Includes.get('tagDetail');
   };
+
+  $scope.tagSubmit = function () {
+    var success = function (response) {
+      $scope.tag = $.extend({}, Tag.parseResponse(response, $scope.newTag.subcategory, $scope.companies, $scope.categories));
+      $scope.tag_template = Includes.get('tagDetail');
+    };
+
+    var failure = function (response) {
+      $scope.error.msg = JSON.stringify(response.data);
+      $scope.error.error = true;
+    };
+
+    // update the product if it exists
+    // then remove the products field
+    if($scope.newTag.products) {
+      if ($scope.newTag.products[0]) {
+        $scope.newTag.product=$scope.newTag.products[0].id;
+      }
+    }
+
+    // copy the from data, strip the products
+    var postData = $.extend({},$scope.newTag);
+    delete postData.products;
+
+    Tag.update(postData, success, failure);
+  };
+
+    // Delete modal info
+  $scope.modalContent = {
+    id: 'tag-delete-' + $scope.tag.id,
+    title: 'Delete This Tag?',
+    body: 'Are you sure you want to delete the tag ' + $scope.tag.company + ': ' + $scope.tag.tag_type.name + '?  This action cannot be undone.',
+    actionName: 'Delete'
+  };
+  $scope.modalTemplate = Includes.get('modal');
+
+  $scope.deleteTag = function () {
+    $('#tag-delete-' + $scope.tag.id).modal('toggle');
+  }
+
+  $scope.modalAction = function () {
+    var success = function (response) {
+      ArrayTools.removeFromList(response, $scope.reference.ethicstags);
+
+      // Code to programmatically dismiss Bootstrap modal overlay
+      $('#tag-delete-' + $scope.tag.id).modal('toggle');
+      $('body').removeClass('modal-open');
+      $('.modal-backdrop').remove();
+    };
+
+    Tag.remove($scope.tag.id, success);
+
+  }
+
 }]);
 
 angular.module('portal')
@@ -44,21 +109,6 @@ angular.module('portal')
     $scope.state.showNewTagForm = true;
   };
 
-  // resusable function to parse tag data when returned from server
-  function parseTag(data) {
-      // Replace element IDs with actual names
-      data.company = $.grep($scope.companies,function(v) {return v.id === data.company;})[0].name;
-      var category = $.grep($scope.categories,function(v) {return v.id === $scope.newTag.subcategory;})[0];
-
-      data.tag_type = {
-        name: $.grep(category.tag_types, function(v) {return v.id === data.tag_type;})[0].name,
-        subcategory: category.name,
-        id: data.tag_type
-      };
-
-      $scope.reference.ethicstags.push(data);
-  }
-
   $scope.tagSubmit = function () {
     var failure = function (response) {
       $scope.error.msg = JSON.stringify(response.data);
@@ -68,10 +118,12 @@ angular.module('portal')
     var success = function (response) {
       if (response.isArray) {
         for (var i=0; i < response.length; i++) {
-          parseTag(response[i]);
+          Tag.parseResponse(response[i], $scope.newTag.subcategory, $scope.companies, $scope.categories);
+          $scope.reference.ethicstags.push(response[i]);
         }
       } else {
-        parseTag(response)
+        Tag.parseResponse(response, $scope.newTag.subcategory, $scope.companies, $scope.categories)
+        $scope.reference.ethicstags.push(response);
       }
 
       $scope.state.showNewTagForm = false;

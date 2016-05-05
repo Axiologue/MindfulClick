@@ -126,7 +126,8 @@ angular.module('portal')
         tagForm: 'templates/includes/tag_form.html',
         tagDetail: 'templates/includes/tag_detail.html',
         referenceForm: 'templates/includes/reference_form.html',
-        referenceDetail: 'templates/includes/reference_detail.html'
+        referenceDetail: 'templates/includes/reference_detail.html',
+        modal: 'templates/includes/modal.html'
       };
 
   services.get = function (templateName) {

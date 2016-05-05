@@ -41,6 +41,8 @@ angular.module('portal')
 angular.module('portal')
 .controller('ReferenceDetailCtrl', ['$scope', 'Reference', '$routeParams', 'Includes', 'Meta', function ($scope, Reference, $routeParams, Includes, Meta) {
   $scope.reference = Reference.get($routeParams.referenceID);
+  $scope.error = {error: false, msg: ""};
+  $scope.referenceModal = Includes.get('modal');
 
   $scope.reference_template = Includes.get('referenceDetail');
   $scope.tagForm = Includes.get('tagForm');
@@ -66,6 +68,22 @@ angular.module('portal')
     $scope.categories = data[1].ethicssubcategory;
   });
 
+  $scope.referenceSubmit = function () {
+    var success = function (response) {
+      $scope.reference.title = response.title;
+      $scope.reference.url = response.url;
+      $scope.reference.notes = response.notes;
+
+      $scope.reference_template = Includes.get('referenceDetail');
+    };
+
+    var failure = function (response) {
+      $scope.error.msg = JSON.stringify(response.data);
+      $scope.error.error = true;
+    };
+
+    Reference.update($scope.tempReference, success, failure);
+  }
 
 }]);
 
@@ -105,4 +123,27 @@ angular.module('portal')
 
     Reference.create($scope.tempReference, success, failure);
   };
+}]);
+
+angular.module('portal')
+.controller('ReferenceDeleteCtrl', ['$scope', 'Reference', '$location', function ($scope, Reference, $location) {
+  $scope.modalContent = {
+    id: 'reference-delete',
+    title: 'Delete This Source?',
+    body: 'Are you sure you want to delete the source ' + $scope.reference.title + '?  This action cannot be undone.',
+    actionName: 'Delete'
+  };
+
+  $scope.modalAction = function () {
+    var success = function () {
+      // Code to programmatically dismiss Bootstrap modal overlay
+      $('#reference-delete').modal('toggle');
+      $('body').removeClass('modal-open');
+      $('.modal-backdrop').remove();
+
+      $location.path('/references/deleted');
+    }
+
+    Reference.remove($scope.reference.id, success);
+  }
 }]);

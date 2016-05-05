@@ -61,7 +61,10 @@ a.orange:hover, a.orange:focus {
   color: #fff;
 }
 
-.btn-white:hover {
+.btn-white:hover,
+.dark-row .btn-white:hover,
+.btn-white:focus,
+.dark-row .btn-white:focus {
   color: #fff;
   background: #f05f40;
 }
@@ -1296,9 +1299,14 @@ dl.reference-detail dd {
 .reference-detail-title-wrapper {
   margin-top: 50px;
   font-size: 20px;
-  font-family: fira-sans-2, Helvetica, sans;
+  font-family: "freight-sans-pro", "Helvetica Neue", Helvetic, sans-serif;
   border: 1px #000 solid;
   padding: 10px;
+}
+
+.reference-detail-title dt {
+  font-weight: 600;
+  font-family: fira-sans-2, Helvetica, sans;
 }
 
 .reference-detail-buttons {
@@ -1399,4 +1407,26 @@ dl.reference-detail dd {
 
 .btn-group.addedProducts {
   margin-right: 20px;
+}
+
+/* MODAL STYLING */
+
+
+
+/* MODAL STYLING */
+
+.modal {
+  color: #000;
+}
+
+.modal .modal-content {
+  border-radius: 0;
+}
+
+.modal .modal-header h4 {
+  color: #000;
+}
+
+.modal .modal-header button {
+  color: #000
 }

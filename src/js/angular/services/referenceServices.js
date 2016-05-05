@@ -4,7 +4,9 @@ angular.module('portal')
       _reference = $resource(BaseUrl + 'references/:referenceAction/', {}, {
         all: {method: 'GET', params: {referenceAction: 'list'}, isArray: true},
         detail: {method: 'GET'},
-        create: {method: 'POST', params: {referenceAction: 'new'}}
+        create: {method: 'POST', params: {referenceAction: 'new'}},
+        update: {method: 'PATCH'},
+        remove: {method: 'DELETE'}
       });
 
   services.all = function (success) {
@@ -17,7 +19,15 @@ angular.module('portal')
 
   services.create = function (data, success, failure) {
     return _reference.create({}, data, success, failure);
-  }
+  };
+
+  services.update = function (data, success, failure) {
+    return _reference.update({referenceAction: data.id }, data, success, failure);
+  };
+
+  services.remove = function (refID, success) {
+    return _reference.remove({referenceAction: refID}, success);
+  };
   
   return services;
 }]);
