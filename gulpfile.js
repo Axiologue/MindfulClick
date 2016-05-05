@@ -1,14 +1,16 @@
 // This gulp setup is derived from 
 
-var gulp = require('gulp');
-var plugins = require('gulp-load-plugins')();
-var del = require('del');
-var es = require('event-stream');    
-var bowerFiles = require('main-bower-files');
-var print = require('gulp-print');
-var streamqueue = require('streamqueue');
-var Server = require('karma').Server;
-path = require('path');
+var gulp = require('gulp'),
+  plugins = require('gulp-load-plugins')(),
+  del = require('del'),
+  es = require('event-stream'),    
+  bowerFiles = require('main-bower-files'),
+  print = require('gulp-print'),
+  streamqueue = require('streamqueue'),
+  Server = require('karma').Server,
+  path = require('path'),
+  aws = require('aws-sdk');
+
 
 var paths = {
   scripts: 'src/**/*.js',
@@ -21,7 +23,7 @@ var paths = {
   scriptsDevServer: 'devServer/**/*.js',
   images: 'src/img/**/*.*',
   fa_fonts: 'bower_components/font-awesome/fonts/*.*',
-}
+};
 
 var pipes = {};
 
@@ -438,5 +440,37 @@ gulp.task('tdd', function (done) {
   }, done).start();
 });
 
+var aws_credentials = require('./aws_credentials.json');
 
+gulp.task('quicktest', function () {
+  plugins.util.log(plugins.cloudfrontInvalidateAwsPublish);
+});
 
+gulp.task('publish', function () {
+
+  var publisher = plugins.awspublish.create({
+    region: 'us-east-1',
+    params: {
+      Bucket: 'www.axiologue.org'
+    },
+    accessKeyId: aws_credentials.accessKeyId,
+    secretAccessKey: aws_credentials.secretAccessKey
+  });
+
+  var cfsettings = {
+    distribution: 'E1AI4VJXPLUL9Q',
+    accessKeyId: aws_credentials.accessKeyId,
+    secretAccessKey: aws_credentials.secretAccessKey
+  }
+
+  var headers = {
+    'Cache-Control': 'max-age=315360000, no-transform, public'
+  };
+
+  return gulp.src(paths.distProd + '/**/*')
+    .pipe(publisher.publish(headers))
+    .pipe(publisher.sync())
+    .pipe(plugins.awspublish.reporter())
+    .pipe(plugins.cloudfrontInvalidateAwsPublish(cfsettings));
+
+});

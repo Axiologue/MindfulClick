@@ -85,7 +85,7 @@ angular.module('portal')
           $scope.errors = data;
         });
       }
-    }
+    };
   }]);
 
 angular.module('portal')

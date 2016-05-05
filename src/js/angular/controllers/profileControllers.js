@@ -1,6 +1,6 @@
 angular.module('portal')
 .controller('ProfileCtrl', ['$scope', 'Preference', function ($scope, Preference) {
-  $scope.preferences = Preference.getAll()
+  $scope.preferences = Preference.getAll();
 
   $scope.options = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5];
 }]);
@@ -41,8 +41,8 @@ angular.module('portal')
 
   $scope.answerQuestions = function () {
     var answers = $scope.questions
-      .filter(function (obj) { return obj.selected })
-      .map(function (obj) { return +obj.selected });
+      .filter(function (obj) { return obj.selected; })
+      .map(function (obj) { return +obj.selected; });
 
     if (answers.length === $scope.questions.length) {
       var success = function (response) {
@@ -54,6 +54,7 @@ angular.module('portal')
     } else {
       $scope.error = "Please select an answer for each question.";
     }
-  }
+  };
+
 
 }]);

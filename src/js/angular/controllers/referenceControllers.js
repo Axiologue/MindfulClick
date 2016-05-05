@@ -7,7 +7,7 @@ angular.module('portal')
       if (obj.metatags.length > 0) { obj.header_text = 'Marked As Having No Data'; }
       else {
         if (obj.ethicstags.length > 0) { obj.header_text = obj.ethicstags.length + ' Data Points'; }
-        else { obj.header_text = 'Not Yet Analyzed' }
+        else { obj.header_text = 'Not Yet Analyzed'; }
       }
 
       return obj;
@@ -33,7 +33,7 @@ angular.module('portal')
     var _checkText = item.title.toLowerCase().indexOf($scope.filtering.text.toLowerCase()) > -1 ||
                      item.notes.toLowerCase().indexOf($scope.filtering.text.toLowerCase()) > -1;
     return _checkText && _checkNoData && _checkUntagged && _checkTagged; 
-  }
+  };
 
     
 }]);
@@ -43,6 +43,7 @@ angular.module('portal')
   $scope.reference = Reference.get($routeParams.referenceID);
 
   $scope.reference_template = Includes.get('referenceDetail');
+  $scope.tagForm = Includes.get('tagForm');
 
   $scope.editReference = function () {
     $scope.reference_template = Includes.get('referenceForm');
@@ -51,17 +52,57 @@ angular.module('portal')
       url: $scope.reference.url,
       id: $scope.reference.id,
       notes: $scope.reference.notes
-    }
-  }
+    };
+  };
 
   $scope.referenceCancel = function ($event) {
     $event.stopPropagation();
     $event.preventDefault();
     $scope.reference_template = Includes.get('referenceDetail');
-  }
+  };
 
   Meta.query(function (data, response) {
     $scope.companies = data[0].company;
     $scope.categories = data[1].ethicssubcategory;
   });
+
+
+}]);
+
+angular.module('portal')
+.controller('NewReferenceCtrl', ['$scope', 'Reference', 'Includes', function ($scope, Reference, Includes) {
+  $scope.referenceForm = Includes.get('referenceForm');
+
+  $scope.error = {error: false,
+                  msg: ""};
+  $scope.success = {success: false,
+                    msg: "Your article has been sucessfully submitted"};
+    
+  $scope.tempReference = {
+      id: 0,
+      url: "",
+      title: "",
+      notes: ""
+    };
+
+  $scope.referenceSubmit = function () {
+    var success = function (data, response) {
+      $scope.tempReference = {
+        id: 0,
+        url: "",
+        title: "",
+        notes: ""
+      };
+      $scope.error.error = false;
+      $scope.success.success = true;
+    };
+
+    var failure = function (response) {
+      $scope.error.msg = JSON.stringify(response.data);
+      $scope.error.error = true;
+      $scope.success.success = false;
+    };
+
+    Reference.create($scope.tempReference, success, failure);
+  };
 }]);

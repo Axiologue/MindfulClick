@@ -7,6 +7,7 @@ var portal = angular.module('portal', [
     'ngRoute',
     'ngCookies',
     'hc.marked',
+    'angucomplete-alt'
 ]);
 
 // Resource settings
@@ -82,8 +83,14 @@ portal.config(['$routeProvider',
       .when('/references/how-to', {
         templateUrl: 'templates/how_to.html'
       })
-      .when('/forum/main', {
-        templateUrl: 'templates/coming_soon.html'
+      .when('/references/new', {
+        controller: 'NewReferenceCtrl',
+        templateUrl: 'templates/reference_new.html',
+        resolve: {
+          authenticated: ['djangoAuth', function(djangoAuth){
+            return djangoAuth.authenticationStatus(true);
+          }],
+        }
       })
       .when('/references/detail/:referenceID', {
         controller: 'ReferenceDetailCtrl',
@@ -92,6 +99,9 @@ portal.config(['$routeProvider',
       .when('/tags/all', {
         controller: 'TagListCtrl',
         templateUrl: 'templates/tag_list.html'
+      })
+      .when('/forum/main', {
+        templateUrl: 'templates/coming_soon.html'
       })
       .when('/account', {
         templateUrl: 'templates/auth/userprofile.html',

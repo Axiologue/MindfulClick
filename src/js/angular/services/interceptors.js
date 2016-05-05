@@ -5,7 +5,7 @@ angular.module('portal')
       if (response.status === 401 && response.data) {
         if (response.data.detail === 'Invalid token.') {
           $cookies.remove('token');
-          $cookies.remove('user')
+          $cookies.remove('user');
 
           var http = $injector.get('$http');
           delete http.defaults.headers.common.Authorization;
@@ -15,7 +15,7 @@ angular.module('portal')
 
       return $q.reject(response);
     }
-  }
+  };
 
   return interceptor;
 }]);

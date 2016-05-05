@@ -24,7 +24,7 @@ angular.module('portal')
   // API Calls 
   Company.getScores(name, parseScores);
   $scope.company = Company.detail(name);
-  $scope.tags = Company.allTags(name)
+  $scope.tags = Company.allTags(name);
 
 }]);
 
@@ -50,7 +50,7 @@ angular.module('portal')
 
   // Sorting and Filtering
   function getUserScore(obj, user_name) {
-    return obj.scores.filter(function (x) {return x.user === user_name})[0].score;
+    return obj.scores.filter(function (x) {return x.user === user_name;})[0].score;
   }
 
   function sortByUserScore(user_name) {
@@ -58,7 +58,7 @@ angular.module('portal')
       if (getUserScore(a, user_name) > getUserScore(b, user_name)) { return -1; }
       if (getUserScore(b, user_name) > getUserScore(a, user_name)) { return 1; }
       return 0;
-    }
+    };
   }
 
   function sortByLabel(a, b) {
@@ -67,7 +67,7 @@ angular.module('portal')
 
   $scope.sortScores = function () {
     if ($scope.filterProps.ordering === 'alphabetic') { $scope.scores.sort(sortByLabel); }
-    else { $scope.scores.sort(sortByUserScore($scope.filterProps.ordering)) }
+    else { $scope.scores.sort(sortByUserScore($scope.filterProps.ordering)); }
   };
 
   $scope.filterScores = function () {
@@ -76,12 +76,12 @@ angular.module('portal')
       return {
         'label': obj.label,
         'scores': obj.scores.filter(function (obj) { 
-          return obj.user !== 'Generic_Conservative' && obj.user !== 'Generic_Liberal'
+          return obj.user !== 'Generic_Conservative' && obj.user !== 'Generic_Liberal';
         }) 
       }
     });
     $scope.scores = scores;
-  }
+  };
 
 
   var parseScores = function (response) {

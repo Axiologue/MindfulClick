@@ -34,3 +34,7 @@ coverage/
 # built versions #
 ##################
 dist.dev/
+
+# secret keys #
+###############
+aws_credentials.json

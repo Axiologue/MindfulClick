@@ -37,7 +37,7 @@ angular.module('portal')
        });
       }
     });
-  }
+  };
 
   return services;
 }]);
@@ -131,6 +131,24 @@ angular.module('portal')
 
   services.get = function (templateName) {
     return _includes[templateName];
+  };
+
+  return services;
+}]);
+
+angular.module('portal')
+.factory('ArrayTools', [function () {
+  var services = {};
+
+  services.removeFromList = function (item, list) {
+    var index = 0;
+      list.some(function(elem, i) {
+        if (elem.id === item.id) {
+          index = i;
+          return true;
+        }
+      });
+      list.splice(index,1);
   };
 
   return services;

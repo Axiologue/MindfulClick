@@ -220,7 +220,7 @@ angular.module('portal')
             var djangoAuth = this;
             delete $http.defaults.headers.common.Authorization;
             $cookies.remove('token');
-            $cookies.remove('user')
+            $cookies.remove('user');
             djangoAuth.authenticated = false;
         }
     };

@@ -10,11 +10,11 @@ angular.module('portal')
 
   services.allWithAnswers = function () {
     return _question.withAnswers();
-  }
+  };
 
   services.initialAnswers = function (answers, success) {
     return _answers.setInitial({}, {answers: answers}, success);
-  }
+  };
 
   return services;
 }]);

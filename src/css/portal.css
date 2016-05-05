@@ -43,7 +43,8 @@ a.orange:hover, a.orange:focus {
   font-weight: 700;
 }
 
-.btn-white {
+.btn-white,
+.btn-white-hoverless {
   background: none;
   border: 1px solid #fff;
   border-radius: 0;
@@ -53,6 +54,11 @@ a.orange:hover, a.orange:focus {
   -webkit-transition: all .35s;
   -moz-transition: all .35s;
   transition: all .35s;
+}
+
+.btn-white-hoverless:hover {
+  cursor: default;
+  color: #fff;
 }
 
 .btn-white:hover {
@@ -280,7 +286,8 @@ select {
 .form-black input[type="last_name"],
 .form-black input[type="username"],
 .form-black input[type="password"],
-.form-black input[type="email"] {
+.form-black input[type="email"],
+.form-black textarea {
   background: rgba(255, 255, 255, .0);
   border: #000 solid 1px;
 }
@@ -1386,4 +1393,10 @@ dl.reference-detail dd {
 .initial-question-form input[type=radio]:not(:checked) + label:hover,
 .initial-question-form input[type=radio]:not(:checked) + label:focus {
   background-color: rgba(240, 95, 64, .6);
+}
+
+/* TAG FORM STYLING */
+
+.btn-group.addedProducts {
+  margin-right: 20px;
 }

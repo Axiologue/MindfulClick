@@ -28,7 +28,7 @@ angular.module('portal')
       count += response[i].tags.length;
     }
     $scope.product_tag_count = count;
-  }
+  };
 
   $scope.product_tags = Product.allTags(productID, countTags);
 
@@ -99,7 +99,7 @@ angular.module('portal')
     
     $scope.toggleOpen = !$scope.toggleOpen;
     $('#productFormCollapse').collapse('toggle'); 
-  }
+  };
 }]);
 
 angular.module('portal')
