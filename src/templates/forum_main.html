@@ -1,0 +1,27 @@
+<section class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+      <h2 class="title-block title-black">Axiologue Forums</h2>
+
+      <table class="table forum-category-table">
+        <tr>
+          <th>Category</th>
+          <th>Thread Count</th>
+          <th>Post Count</th>
+        </tr>
+        <tr ng-repeat="category in categories">
+          <td>
+            <a class="forum-category-title" href="#/forum/category/{{ category.id }}"><h3>{{ category.name }}</h3></a>
+            <p class="forum-category-description text-muted">
+              {{ category.description }}
+              <br />
+              <em>{{ category.latest }}</em>
+              </p>
+            </td>
+            <td>{{ category.thread_count }}</td>
+            <td>{{ category.post_count }}</td>
+          </tr>
+        </table>
+    </div>
+  </div>
+</section>

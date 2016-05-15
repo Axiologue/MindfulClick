@@ -1411,10 +1411,6 @@ dl.reference-detail dd {
 
 /* MODAL STYLING */
 
-
-
-/* MODAL STYLING */
-
 .modal {
   color: #000;
 }
@@ -1429,4 +1425,15 @@ dl.reference-detail dd {
 
 .modal .modal-header button {
   color: #000
+}
+
+/* FORUM STYLING */
+
+.forum-category-title h3 {
+  margin-top: 5px;
+}
+
+.forum-thread-title h3 {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }

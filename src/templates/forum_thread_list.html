@@ -1,0 +1,49 @@
+<section class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+      <h2 class="title-block title-black">Axiologue Forums</h2>
+
+      <h3 class="forum-category-detail-title">{{ category.name }}</h3>
+      <h4 class="forum-category-detail-subtitle">{{ category.description }}</h4>
+
+      <table class="table forum-category-table">
+        <tr>
+          <th>Topic</th>
+          <th>Post Count</th>
+          <th>Last Modified</th>
+        </tr>
+        <tr ng-repeat="thread in threads">
+          <td>
+            <a class="forum-thread-title" href="#/forum/thread/{{ thread.id }}"><h3>{{ thread.subject }}</h3></a>
+            <p class="forum-thread-description text-muted">
+            <em>created by {{ thread.author }} on {{ thread.created_date }}</em>
+            </p>
+          </td>
+          <td>{{ thread.post_count }}</td>
+          <td>
+            <em ng-show="thread.latest">{{ thread.latest }}</em>
+            <em ng-hide="thread.latest">{{ thread.created_date }}</em>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row" ng-show="authenticated">
+    <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+      <hr />
+      <div ng-hide="showNewThreadForm">
+        <button class="btn btn-black" ng-click="showThreadForm()">Add New Thread</button>
+      </div>
+      <div ng-show="showNewThreadForm">
+        <form ng-submit="submitThread()">
+          <div class="form-group">
+            <label for="thread-text">New Thread</label>
+            <input type="text" class="form-control" id="thread-text" ng-model="newThread.subject" />
+          </div>
+          <input class="btn btn-black" type="submit" name="Create" />
+          <button class="btn btn-black" ng-click="cancelNewThread($event)">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

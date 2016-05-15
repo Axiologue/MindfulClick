@@ -109,7 +109,12 @@ portal.config(['$routeProvider',
         templateUrl: 'templates/tag_list.html'
       })
       .when('/forum/main', {
-        templateUrl: 'templates/coming_soon.html'
+        templateUrl: 'templates/forum_main.html',
+        controller: 'ForumMainCtrl'
+      })
+      .when('/forum/category/:categoryID', {
+        templateUrl: 'templates/forum_thread_list.html',
+        controller: 'ThreadListCtrl'
       })
       .when('/account', {
         templateUrl: 'templates/auth/userprofile.html',
