@@ -6,7 +6,6 @@ angular.module('portal')
 angular.module('portal')
 .controller('ThreadListCtrl', ['Forum', '$scope', '$routeParams', function (Forum, $scope, $routeParams) {
   $scope.category = Forum.categoryDetail($routeParams.categoryID);
-  $scope.threads = Forum.threadsByCategory($routeParams.categoryID);
 
   $scope.showNewThreadForm = false;
 
@@ -32,7 +31,7 @@ angular.module('portal')
       response.created_date = now.toLocaleString();
       response.author = $scope.user.username;
       response.post_count = 0;
-      $scope.threads = [response].concat($scope.threads);
+      $scope.category.threads = [response].concat($scope.category.threads);
       $scope.showNewThreadForm = false;
     };
 
@@ -41,5 +40,45 @@ angular.module('portal')
     };
 
     Forum.newThread($scope.newThread, success, failure);
+  };
+}]);
+
+angular.module('portal')
+.controller('PostListCtrl', ['$scope', 'Forum', '$routeParams', function ($scope, Forum, $routeParams) {
+  $scope.thread = Forum.threadDetail($routeParams.threadID);
+
+  $scope.showNewPostForm = false;
+
+  $scope.showPostForm = function () {
+    $scope.newPost = {
+      text: '',
+      thread: $routeParams.threadID
+    };
+
+    $scope.showNewPostForm = true;
+  };
+
+  $scope.cancelNewPost = function ($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+
+    $scope.showNewPostForm = false;
+  }
+
+  $scope.submitPost = function () {
+    var success = function (response) {
+      var now = new Date();
+      response.created_date = now.toLocaleString();
+      response.last_edited_date = now.toLocaleString();
+      response.author = $scope.user.username;
+      $scope.thread.posts.push(response);
+      $scope.showNewPostForm = false;
+    };
+
+    var failure = function (response) {
+      console.log(response);
+    };
+
+    Forum.newPost($scope.newPost, success, failure);
   };
 }]);

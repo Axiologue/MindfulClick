@@ -116,6 +116,10 @@ portal.config(['$routeProvider',
         templateUrl: 'templates/forum_thread_list.html',
         controller: 'ThreadListCtrl'
       })
+      .when('/forum/thread/:threadID', {
+        templateUrl: 'templates/forum_post_list.html',
+        controller: 'PostListCtrl'
+      })
       .when('/account', {
         templateUrl: 'templates/auth/userprofile.html',
         resolve: {

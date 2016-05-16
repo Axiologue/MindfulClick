@@ -15,7 +15,7 @@
             <p class="forum-category-description text-muted">
               {{ category.description }}
               <br />
-              <em>{{ category.latest }}</em>
+              <em ng-show="{{ category.latest }}">last updated {{ category.latest }}</em>
               </p>
             </td>
             <td>{{ category.thread_count }}</td>

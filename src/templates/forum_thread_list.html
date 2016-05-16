@@ -12,7 +12,7 @@
           <th>Post Count</th>
           <th>Last Modified</th>
         </tr>
-        <tr ng-repeat="thread in threads">
+        <tr ng-repeat="thread in category.threads">
           <td>
             <a class="forum-thread-title" href="#/forum/thread/{{ thread.id }}"><h3>{{ thread.subject }}</h3></a>
             <p class="forum-thread-description text-muted">
