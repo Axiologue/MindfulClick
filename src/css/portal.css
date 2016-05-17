@@ -1437,3 +1437,24 @@ dl.reference-detail dd {
   margin-top: 5px;
   margin-bottom: 5px;
 }
+
+.forum-post-table .post-meta {
+  margin-left: 50px;
+}
+
+.forum-post-table i {
+  margin: 0;
+}
+
+.forum-post-table {
+  min-width: 100%;
+  table-layout: fixed;
+}
+
+.forum-post-table .col-meta {
+  width: 250px;
+}
+
+.forum-post-table .post-meta {
+  font-size: 12px;
+}

@@ -40,6 +40,10 @@
             <label for="thread-text">New Thread</label>
             <input type="text" class="form-control" id="thread-text" ng-model="newThread.subject" />
           </div>
+          <div class="form-group">
+            <label for="thread-body">Write Your Post Content Here</label>
+            <textarea rows="8" class="form-control" id="thread-body" ng-model="newThread.post_content" ></textarea>
+          </div>
           <input class="btn btn-black" type="submit" name="Create" />
           <button class="btn btn-black" ng-click="cancelNewThread($event)">Cancel</button>
         </form>

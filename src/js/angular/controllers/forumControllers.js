@@ -12,6 +12,7 @@ angular.module('portal')
   $scope.showThreadForm = function () {
     $scope.newThread = {
       subject: '',
+      post_content: '',
       category: $scope.category.id
     };
 
@@ -30,7 +31,7 @@ angular.module('portal')
       var now = new Date();
       response.created_date = now.toLocaleString();
       response.author = $scope.user.username;
-      response.post_count = 0;
+      response.post_count = 1;
       $scope.category.threads = [response].concat($scope.category.threads);
       $scope.showNewThreadForm = false;
     };

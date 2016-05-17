@@ -5,18 +5,30 @@
 
       <h3 class="forum-thread-detail-title">{{ thread.subject }}</h3>
 
-      <table class="table forum-category-table">
+      <table class="table forum-post-table">
+        <colgroup>
+          <col class="col-meta">
+          <col class="col-content">
+        </colgroup>
         <tr>
-          <th>Post</th>
           <th>Posted By</th>
+          <th>Post</th>
         </tr>
         <tr ng-repeat="post in thread.posts">
           <td>
-            <p>{{ post.text }}</p>
+            <span class="fa-stack pull-left">
+              <i class="fa fa-file fa-stack-2x fa-outline-dark-gray-on-white"></i>
+              <i ng-if="post.sticky" class="fa fa-lock fa-stack-1x"></i>
+            </span>
+            <div class="post-meta">
+              <span class="text-muted">{{ post.author }}</span><br />
+              <em class="text-muted">posted on {{ post.created_date }}</em>
+            </div>
           </td>
           <td>
-            <span class="text-muted">{{ post.author }}</span><br />
-            <em class="text-muted">posted on {{ post.created_date }}</em>
+            <div class="post-content">
+              {{ post.text }}
+            </div>
           </td>
         </tr>
       </table>
@@ -32,7 +44,7 @@
         <form ng-submit="submitPost()">
           <div class="form-group">
             <label for="post-body">Write Your Post</label>
-            <textarea class="form-control" id="post-body" ng-model="newPost.text" />
+            <textarea class="form-control" id="post-body" ng-model="newPost.text"></textarea>
           </div>
           <input class="btn btn-black" type="submit" name="Post" />
           <button class="btn btn-black" ng-click="cancelNewPost($event)">Cancel</button>

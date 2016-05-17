@@ -1,6 +1,6 @@
 angular.module('portal')
 .factory('BaseUrl', [function () {
-    return 'http://localhost:8000/';
+    return 'https://api.axiologue.org/';
 }]);
 
 angular.module('portal')

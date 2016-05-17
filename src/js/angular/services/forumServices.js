@@ -6,7 +6,7 @@ angular.module('portal')
         detail: {method: 'GET'}
       }),
       _threads = $resource(BaseUrl + 'forum/threads/:threadID/', {}, {
-        save: {method: 'POST', params: {categoryID: 'new'}},
+        save: {method: 'POST', params: {threadID: 'new'}},
         detail: {method: 'GET'}
       }),
       _posts = $resource(BaseUrl + 'forum/posts/:postID/', {}, {
