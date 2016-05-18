@@ -1,0 +1,48 @@
+<section class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="title-block title-black">Set the Modifiers for this Question</h2>
+        <h3><strong>{{ ethics.question.question }}</strong></h3>
+        <h3>{{ ethics.question.supplement }}</h3>
+
+        <table class="table table-striped table-bordered table-modifiers form-black">
+          <tr>
+            <th>Tag Type</th>
+            <th ng-repeat="answer in ethics.answers">{{answer.answer}}</th>
+          </tr>
+          <tbody ng-repeat="ethic in ethics.ethics">
+            <tr>
+              <td><h4><strong>{{ethic.name}}</strong></h4></td>
+              <td ng-repeat="answer in ethics.answers"> </td>
+            </tr>
+            <tr ng-repeat="tag_type in ethic.tag_types">
+              <td><strong>{{tag_type.subcategory}}</strong>: {{tag_type.name}}</td>
+              <td ng-repeat="answer in ethics.answers">
+                <label class="fa-label">
+                  <select class="form-control" ng-model="answer.modifiers[tag_type.id]" convert-to-number>
+                    <option ng-repeat="option in options" value="{{option.value}}">{{option.display}}</option>
+                  </select>
+                </label>
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
+
+        <button class="btn btn-black" ng-click="saveAnswers()">Save Changes</button>
+        <button class="btn btn-black" ng-hide="state.addAnswer" ng-click="showAnswerForm()">Add New Answer</button>
+
+        <form ng-show="state.addAnswer" ng-submit="addAnswer()">
+          <h3 ng-show="state.error">{{state.error}}</h3>
+
+          <div class="form-group">
+            <label for="newAnswer">Enter Your Answer:</label>
+            <input type="text" class="form-control" id="newAnswer" placeholder="Create a new answer to this question" ng-model="newAnswer.answer">
+          </div>
+
+          <button type="submit" class="btn btn-black">Add Answer</button>
+          <button ng-click="cancelAddAnswer($event)" class="btn btn-black">Cancel</button>
+        </form>
+    </div>
+  </div>
+</section>

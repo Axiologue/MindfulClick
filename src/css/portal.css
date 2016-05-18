@@ -1458,3 +1458,13 @@ dl.reference-detail dd {
 .forum-post-table .post-meta {
   font-size: 12px;
 }
+
+/* Question Editing Styling */
+
+.newQuestionForm {
+  margin-top: 50px;
+}
+
+.table-modifiers select {
+  width: 50px;
+}

@@ -1,0 +1,36 @@
+<section class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-2 col-lg-8 col-lg-offset-2">
+      <h2 class="title-block title-black">Profile Setting Questions</h2>
+
+      <div class="question-list-item" ng-repeat="question in questions">
+        <a href="#/profile/questions/{{question.id}}">
+          <h4><strong>{{question.question}}</strong></h4>
+          <h4>{{question.supplement}}</h4>
+        </a>
+      </div>
+
+      <div class="newQuestionForm">
+        <button class="btn btn-black" ng-hide="state.addQuestion" ng-click="showNewQuestion()">Add Question</button>
+
+        <form ng-show="state.addQuestion" ng-submit="addQuestion()">
+          <h3 ng-show="state.error">{{state.error}}</h3>
+
+          <div class="form-group">
+            <label for="newQuestion">Enter Your Question:</label>
+            <input type="text" class="form-control" id="newQuestion" placeholder="What do you want to ask?" ng-model="newQuestion.question">
+          </div>
+
+          <div class="form-group">
+            <label for="newSupplement">Enter Any Additional Info:</label>
+            <input type="text" class="form-control" id="newSupplement" placeholder="eg. Caveats, Explanations, etc" ng-model="newQuestion.supplement">
+          </div>
+
+          <button type="submit" class="btn btn-black">Add Question</button>
+          <button class="btn btn-black" ng-click="cancelQuestion($event)">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+

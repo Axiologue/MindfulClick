@@ -137,6 +137,24 @@ portal.config(['$routeProvider',
           }],
         }
       })
+      .when('/profile/questions', {
+        controller: 'QuestionListCtrl',
+        templateUrl: 'templates/question_list.html',
+        resolve: {
+          authenticated: ['djangoAuth', function(djangoAuth){
+            return djangoAuth.authenticationStatus(true);
+          }],
+        }
+      })
+      .when('/profile/questions/:questionID', {
+        controller: 'QuestionDetailCtrl',
+        templateUrl: 'templates/question_detail.html',
+        resolve: {
+          authenticated: ['djangoAuth', function(djangoAuth){
+            return djangoAuth.authenticationStatus(true);
+          }],
+        }
+      })
       .when('/initial', {
         controller: 'InitialCtrl',
         templateUrl: 'templates/initial_questions.html',

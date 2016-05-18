@@ -37,7 +37,7 @@ angular.module('portal')
     // If the user attempts to access a restricted page, redirect to login page with error.
     $scope.$on('$routeChangeError', function(ev, current, previous, rejection){
       console.error("Unable to change routes.  Error: ", rejection);
-      LinkStore.set(previous.$$route.originalPath);
+      LinkStore.set(previous.$route.originalPath);
       $location.path('/forbidden');
     });
 
