@@ -68,6 +68,14 @@ portal.config(['$routeProvider',
         controller: 'BlogDetailCtrl',
         templateUrl: 'templates/blog_detail.html'
       })
+      .when('/events/all', {
+        controller: 'EventListCtrl',
+        templateUrl: 'templates/event_list.html'
+      })
+      .when('/events/detail/:eventID', {
+        controller: 'EventDetailCtrl',
+        templateUrl: 'templates/event_detail.html'
+      })
       .when('/search/general', {
         controller: 'GeneralSearchCtrl',
         templateUrl: 'templates/search_empty.html'

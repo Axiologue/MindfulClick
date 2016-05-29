@@ -2,7 +2,7 @@ angular.module('portal')
 .controller('CompanyDetailCtrl', ['$scope', 'Company', '$routeParams', 'Scores', function ($scope, Company, $routeParams, Scores) {
 
   // get name of the current company
-  var name = $routeParams.companyName.replace('-', ' ');
+  var name = Company.getName($routeParams.companyName);
 
   // Font Awesome Icons for tag categories
   $scope.categoryIcons = Scores.getCategoryIcons();

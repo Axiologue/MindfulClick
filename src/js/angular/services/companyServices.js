@@ -36,6 +36,10 @@ angular.module('portal')
     return _companyInfo.all();
   };
 
+  services.getName = function (url_name) {
+    return url_name != 'Po-Zu' ? url_name.replace('-', ' ') : 'Po-Zu';
+  }
+
   return services;
 
 }]);

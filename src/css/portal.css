@@ -189,13 +189,16 @@ section {
   padding-bottom: 40px;
 }
 
+.fa-margins {
+  margin: 20px 20px;
+}
+
 .fa-outline-white {
   color: #000;
   text-shadow: -1px -1px 0 #fff,
                 1px -1px 0 #fff,
                -1px 1px 0 #fff,
                 1px 1px 0 #fff;
-  margin: 20px 20px;
   -webkit-transition: all .5s;
   -moz-transition: all .5s;
   transition: all .5s;
@@ -207,7 +210,6 @@ section {
                 1px -1px 0 #999,
                -1px 1px 0 #999,
                 1px 1px 0 #999;
-  margin: 20px 20px;
   -webkit-transition: all .5s;
   -moz-transition: all .5s;
   transition: all .5s;
@@ -219,7 +221,6 @@ section {
                 1px -1px 0 #999,
                -1px 1px 0 #999,
                 1px 1px 0 #999;
-  margin: 20px 20px;
   -webkit-transition: all .5s;
   -moz-transition: all .5s;
   transition: all .5s;
@@ -1090,6 +1091,11 @@ a:hover .horizontal-bar-title {
   max-width: 100%;
 }
 
+.blog-image {
+  max-width: 100%;
+  padding: 30px 50px;
+}
+
 
 /* PREFERENCE PANEL */
 
@@ -1467,4 +1473,56 @@ dl.reference-detail dd {
 
 .table-modifiers select {
   width: 50px;
+}
+
+/* EVENT/CALENDAR STYLING */
+
+.event-list {
+  list-style: none;
+}
+
+.event-header {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.event-list-content {
+  margin-left: 40px;
+}
+
+.event-item {
+  margin-bottom: 30px;
+}
+
+.event-detail,
+.event-location {
+  padding: 20px 40px;
+  margin-top: 30px;
+  font-size: 17px;
+}
+.event-detail-header {
+  font-weight: 600;
+}
+
+.event-detail-subheader {
+  margin-bottom: 30px;
+}
+
+/* 
+  responsive embed code from Rachel McCollin:
+  https://www.smashingmagazine.com/2014/02/making-embedded-content-work-in-responsive-design/
+*/
+
+.google-maps {
+    position: relative;
+    padding-bottom: 90%; // (450 ÷ 500 = 0.9 = 90%)
+    height: 0;
+    overflow: hidden;
+}
+
+.google-maps iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
