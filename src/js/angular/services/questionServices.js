@@ -7,7 +7,7 @@ angular.module('portal')
         all: {method: 'GET', params: {questionDetail: 'all'}, isArray: true}
       }),
       _answers = $resource(BaseUrl + 'profile/question/:answerNum/:answerID/', {}, {
-        setInitial: {method: 'POST', params: {answerNum: 'answers'}, answerID: 'set'},
+        setInitial: {method: 'POST', params: {answerNum: 'answers', answerID: 'set'}},
         withModifiers: {method: 'GET', params: {answerNum: 'answers'}}
       }),
       _singleQuestion = $resource(BaseUrl + 'profile/question/answer/:questionID/:answerAction/', {}, {

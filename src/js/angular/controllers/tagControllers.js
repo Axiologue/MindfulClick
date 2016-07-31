@@ -147,8 +147,41 @@ angular.module('portal')
     $event.preventDefault();
     $event.stopPropagation();
 
-    $scope.tagFormState.addTagType = !$scope.tagFormState.addTagType;
+    $scope.newTypeError = {'error': ""};
+
+    $scope.tagFormState.addTagType = true;
     $scope.newTagType = { name: '' };
+  };
+
+  // Cancels adding a new Tag Type
+  $scope.cancelAddType = function ($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+
+    $scope.tagFormState.addTagType = false;
+  };
+
+  $scope.submitTagType = function ($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+
+    var newTypeSuccess = function (response) {
+      $scope.tagTypes.push(response)
+      $scope.newTag.tag_type = response.id;
+      $scope.tagFormState.addTagType = false;
+    };
+
+    var newTypeFailure = function (response) {
+      $scope.newTypeError.error = response.data;
+      console.log(response.data);
+    };
+
+    if (!$scope.newTagType.name) {
+      $scope.newTypeError.error = "Please enter a new Tag Type or cancel";
+    } else {
+      $scope.newTagType.subcategory = $scope.newTag.subcategory;
+      Tag.createType($scope.newTagType, newTypeSuccess, newTypeFailure);
+    }
   };
 
   $scope.productListUrl = BaseUrl + 'products/products/list/?company_id= ' + $scope.newTag.company + '&name=';
