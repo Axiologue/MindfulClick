@@ -32,9 +32,9 @@
               <!-- Second Item -->
               <div class="item" style="background-image: url('img/headers/GrayShoeHanging.jpg');">
                 <div class="carousel-caption caption-bottom">
-                  <h2 class="heavy">Mindful Click:</h2>
+                  <h2 class="heavy">The Mindful Click Chrome Extension</h2>
                   <h3>Shop With Your Ethics on Amazon or Zappos</h3>
-                  <button class="btn btn-lg btn-white">Get the Extension</button>
+                  <a href="https://chrome.google.com/webstore/detail/mindful-click/heebhgffobmoeghjfpomlmbaghahjbme?hl=en-US" class="btn btn-lg btn-white">Get the Extension</a>
                 </div>
               </div>
 
@@ -103,19 +103,58 @@
       </div>
     </header>
 
-    <section class="container-fluid" id="whatIs">
+    <section class="container" id="recent" ng-controller="RecentCtrl">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="title-block title-black">Newly Added Product Info</h2>
+        </div>
+        <!-- left column -->
+        <div class="col-xs-12 col-md-6">
+
+          <ul class="recent-list">
+            <li ng-repeat="tag in left_tags">
+              <img class="brand-thumbnail" src="img/Logos/{{ tag.company.replace(' ','-') }}-small-black.png" />
+              <strong><h5 class="recent-header"><a href="{{ tag.link }}">{{ tag.tag_type }}<span ng-show="tag.value">: {{tag.value}}</span></a></h5></strong>
+              <span class="text-muted">From: <a href="#/references/detail/{{ tag.reference.id }}">{{ tag.reference }}</a></span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- right column -->
+        <div class="col-xs-12 col-md-6">
+
+          <ul class="recent-list">
+            <li ng-repeat="tag in right_tags">
+              <img class="brand-thumbnail" src="img/Logos/{{ tag.company.replace(' ','-') }}-small-black.png" />
+              <strong><h5 class="recent-header"><a href="{{ tag.link }}">{{ tag.tag_type }}<span ng-show="tag.value">: {{tag.value}}</span></a></h5></strong>
+              <span class="text-muted">From: <a href="#/references/detail/{{ tag.reference.id }}">{{ tag.reference }}</a></span>
+            </li>
+
+          </ul>
+        </div>
+
+        <div class="col-xs-12 text-center">
+          <a class="btn btn-black" href="#/tags/all"><h4>Browse the rest of our ethical data</h4></a>
+        </div>
+
+
+      </div>
+
+    </section>
+
+    <section class="container-fluid dark-row" id="whatIs">
       <div class="row">
         <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-          <h2 class="title-block title-black">What is Axiologue?</h2>
+          <h2 class="title-block title-black">What is Mindful Click?</h2>
 
-              <p>Axiologue is a crowd-sourced, community-based project to track the ethics of products and companies. We put ethical information in the hands of consumers, so they can shop in line with their own personal ethics and support the companies that are doing it right. We are guided by the following five principles:</p>
+              <p>Mindful Click is a crowd-sourced resource to track the ethics of products and companies, created by the Axiologue community. We put ethical information in the hands of consumers, so they can shop in line with their own personal ethics and support the companies that are doing it right. We are guided by the following five principles:</p>
 
               <ul class="fa-ul principles-list">
                 <li><i class="fa-li fa fa-lg fa-usd"></i> <h4>Free</h4> Ethical information should never be behind a paywall. We believe ethical information should be accessible to anyone who wants access to it.</li>
                 <li><i class="fa-li fa fa-lg fa-user"></i> <h4>Personalized</h4> Who decides what's ethical?  You do! Axiologue lets users customize their ethical profiles so they only see what's important to them.</li>
-                <li><i class="fa-li fa fa-lg fa-unlock-alt"></i> <h4>Open</h4> We believe ethical behavior starts with the free exchange of knoweldge. All of Axiologue's raw data is freely available, via this website or our Open API. All of our software is open source.</li>
-                <li><i class="fa-li fa fa-lg fa-bar-chart"></i> <h4>Comprehensive</h4> Axiologue covers all possible ethical categories, including environment, labor, political affiliation, and more.</li>
-                <li><i class="fa-li fa fa-lg fa-comments"></i> <h4>Participatory</h4> Axiologue is a crowd-sourced project, and all you need to contribute is a desire to bring ethical information to those who want it!</li>
+                <li><i class="fa-li fa fa-lg fa-unlock-alt"></i> <h4>Open</h4> We believe ethical behavior starts with the free exchange of knoweldge. All of Mindful Click's raw data is freely available, via this website or our Open API. All of our software is open source.</li>
+                <li><i class="fa-li fa fa-lg fa-bar-chart"></i> <h4>Comprehensive</h4> Mindful Click covers all possible ethical categories, including environment, labor, political affiliation, and more.</li>
+                <li><i class="fa-li fa fa-lg fa-comments"></i> <h4>Participatory</h4> Mindful Click is a crowd-sourced project, and all you need to contribute is a desire to bring ethical information to those who want it!</li>
             </ul>
 
         </div>
@@ -131,60 +170,10 @@
 
           <a href="#/references/how-to" class="btn btn-orange btn-lg btn-help">How To Help</a>
 
-          <p class="text-left">Axiologue was founded by artist/programmer <a href="http://www.nishi-broach.com/">Matt Nishi-Broach</a> and artist/community organizer <a href="http://www.chloebass.com">Chloë Bass</a>.</p>
         </div>
       </div>
     </section>
 
-    <section class="container-fluid" id="recent" ng-controller="RecentCtrl">
-      <div class="row">
-        <div class="col-xs-12 col-md-6 col-lg-4 col-lg-offset-1">
-          <h2 class="title-block title-black">Newly Added Research</h2>
-
-          <ul class="recent-list">
-            <li ng-repeat="tag in tags">
-              <img class="brand-thumbnail" src="img/Logos/{{ tag.company.replace(' ','-') }}-small-black.png" />
-              <strong><h5 class="recent-header"><a href="{{ tag.link }}">{{ tag.tag_type }}<span ng-show="tag.value">: {{tag.value}}</span></a></h5></strong>
-              <span class="text-muted">From: <a href="#/references/detail/{{ tag.reference.id }}">{{ tag.reference }}</a></span>
-            </li>
-            <li class="text-center recent-button"><a class="btn btn-black" href="#/tags/all"><h4>Browse the rest of our ethical data</h4></a></li>
-
-          </ul>
-        </div>
-
-        <div class="col-xs-12 col-md-6 col-lg-4 col-lg-offset-2">
-          <h2 class="title-block title-black">Recent/Upcoming Events</h2>
-
-          <ul class="recent-list">
-            <li ng-repeat="event in events">
-              <i class="fa fa-check-circle fa-2x fa-pull-left fa-border"></i>
-              <strong><h5 class="recent-header"><a href="#/events/detail/{{ event.id }}">{{ event.name }}</a></h5></strong><span class="text-muted">{{ event.location.name}}, {{ event.location.city }} -- {{ event.start}} </span>
-            </li>
-            <li class="text-center recent-button"><a class="btn btn-black" href="#/events/all"><h4>See our full calendar</h4></a></li>
-
-          </ul>
-
-        </div>
-      </div>
-
-      <div class="row dark-row">
-        <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-          <h2 class="title-block title-white">New Blog Posts</h2>
-
-          <ul class="recent-list">
-            <li ng-repeat="post in posts">
-              <strong><h3 class="recent-header recent-header-large"><a href="#/blog/detail/{{ post.title_url }}">{{ post.title.toUpperCase() }}</a></h3></strong>
-              <h4 class="recent-subheader">{{ post.sub_title }}</h4>
-              <span class="text-muted">posted by <a href="#/users/{{ post.posted_by }}">{{ post.posted_by }}</a> at {{ post.pub_time }}.</span>
-            </li>
-            <li class="text-center recent-button"><a class="btn btn-white" href="#/blog/all"><h4>Check out the rest of the blog!</h4></a></li>
-
-          </ul>
-
-
-        </div>
-      </div>
-    </section>
 
     <section class="container-fluid">
       <div class="row">

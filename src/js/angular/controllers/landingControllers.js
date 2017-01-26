@@ -1,18 +1,21 @@
 angular.module('portal')
-.controller('RecentCtrl', ['$scope', 'Landing', function ($scope, Landing) {
+.controller('RecentCtrl', ['$scope', 'Tag', function ($scope, Tag) {
   $scope.search = { query: '' };
 
-  var populateRecent = function (response) {
-    $scope.events = response[2].events;
-    $scope.tags = response[1].tags;
-    $scope.posts = response[0].posts;
-
-    for (var i=0; i<$scope.tags.length; i++) {
-      $scope.tags[i].link = $scope.tags[i].product ? '#/products/detail/' + $scope.tags[i].product.id : '#/companies/detail/' + $scope.tags[i].company.replace(' ', '-');
+  var recentSuccess = function (response) {
+    for (var i=0; i < response.length; i++) {
+      response[i].link = response[i].product ? '#/products/detail/' + response[i].product.id : '#/companies/detail/' + response[i].company.replace(' ', '-');
     }
+
+    $scope.left_tags = response.slice(0, 5);
+    $scope.right_tags = response.slice(5, 10);
   };
 
-  Landing.recentData(populateRecent);
+  var recentFailure = function (response) {
+    console.log(response.data);
+  };
+
+  Tag.recent(recentSuccess, recentFailure);
 }]);
 
 

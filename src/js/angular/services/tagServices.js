@@ -5,7 +5,8 @@ angular.module('portal')
         all: {method: 'GET', params: {tagID: 'list'}, isArray: true},
         saveMulti: {method: 'POST', params: {tagID: 'new'}, isArray: true},
         update: {method: 'PATCH'},
-        remove: {method: 'DELETE'}
+        remove: {method: 'DELETE'},
+        recent: {method: 'GET', params: {tagID: 'recent'}, isArray: true}
       }),
       _types = $resource(BaseUrl + 'tags/etypes/:typeID/', {}, {
         create: {method: 'POST', params: {typeID: 'new'}}
@@ -48,6 +49,10 @@ angular.module('portal')
 
   services.createType = function (newType, success, failure) {
     return _types.create({}, newType, success, failure);
+  };
+
+  services.recent = function (success, failure) {
+    return _tags.recent(success, failure);
   };
 
   return services;
