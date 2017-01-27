@@ -45,13 +45,13 @@
             <dd>{{ reference.notes }}</dd>
             <dt>DATA</dt>
             <dd ng-show="reference.metatags.length > 0">Article Marked As Having No Relevant Data.  It is still stored here as a reference.</dd>
-            <dd ng-show="reference.metatags.length === 0 && reference.ethicstags.length === 0">This reference hasn't been analyzed yet.  Help us out by <a href="#/references/detail/{{ reference.id }}">adding a tag</a></dd>
+            <dd ng-show="reference.metatags.length === 0 && reference.ethicstags.length === 0">This reference hasn't been analyzed yet.  Help us out by <a href="/references/detail/{{ reference.id }}">adding a tag</a></dd>
             <dd ng-repeat="tag in reference.ethicstags"><strong>{{ tag.tag_type.name }}</strong> ({{ tag.tag_type.subcategory }}) <br />
             <span class="text-muted">"{{ tag.excerpt }}"</span></dd>
             
           </dl>
 
-          <a class="btn btn-black" href="#/references/detail/{{ reference.id }}">Edit or Analyze This Source</a>
+          <a class="btn btn-black" href="/references/detail/{{ reference.id }}">Edit or Analyze This Source</a>
 
           </uib-accordion-group>
 

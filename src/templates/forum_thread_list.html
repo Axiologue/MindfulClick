@@ -14,7 +14,7 @@
         </tr>
         <tr ng-repeat="thread in category.threads">
           <td>
-            <a class="forum-thread-title" href="#/forum/thread/{{ thread.id }}"><h3>{{ thread.subject }}</h3></a>
+            <a class="forum-thread-title" href="/forum/thread/{{ thread.id }}"><h3>{{ thread.subject }}</h3></a>
             <p class="forum-thread-description text-muted">
             <em>created by {{ thread.author }} on {{ thread.created_date }}</em>
             </p>

@@ -46,37 +46,37 @@
 
                   <div class="squares-wrapper">
                     <div class="carousel-square">
-                      <a href="#/companies/detail/Nike">
+                      <a href="/companies/detail/Nike">
                         <img class="img-responsive" src="img/Logos/Nike-mid-white.png" />
                       </a>
                     </div>
 
                     <div class="carousel-square">
-                      <a href="#/companies/detail/Adidas">
+                      <a href="/companies/detail/Adidas">
                         <img class="img-responsive" src="img/Logos/Adidas-mid-white.png" />
                       </a>
                     </div>
 
                     <div class="carousel-square">
-                      <a href="#/companies/detail/New-Balance">
+                      <a href="/companies/detail/New-Balance">
                         <img class="img-responsive" src="img/Logos/New-Balance-mid-white.png" />
                       </a>
                     </div>
 
                     <div class="carousel-square">
-                      <a href="#/companies/detail/Under-Armour">
+                      <a href="/companies/detail/Under-Armour">
                         <img class="img-responsive" src="img/Logos/Under-Armour-mid-white.png" />
                       </a>
                     </div>
 
                     <div class="carousel-square">
-                      <a href="#/companies/detail/Asics">
+                      <a href="/companies/detail/Asics">
                         <img class="img-responsive" src="img/Logos/Asics-mid-white.png" />
                       </a>
                     </div>
 
                     <div class="carousel-square">
-                      <a href="#/companies/all">
+                      <a href="/companies/all">
                         <h3>& Many More...</h3>
                       </a>
                     </div>
@@ -115,7 +115,7 @@
             <li ng-repeat="tag in left_tags">
               <img class="brand-thumbnail" src="img/Logos/{{ tag.company.replace(' ','-') }}-small-black.png" />
               <strong><h5 class="recent-header"><a href="{{ tag.link }}">{{ tag.tag_type }}<span ng-show="tag.value">: {{tag.value}}</span></a></h5></strong>
-              <span class="text-muted">From: <a href="#/references/detail/{{ tag.reference.id }}">{{ tag.reference }}</a></span>
+              <span class="text-muted">From: <a href="/references/detail/{{ tag.reference.id }}">{{ tag.reference }}</a></span>
             </li>
           </ul>
         </div>
@@ -127,14 +127,14 @@
             <li ng-repeat="tag in right_tags">
               <img class="brand-thumbnail" src="img/Logos/{{ tag.company.replace(' ','-') }}-small-black.png" />
               <strong><h5 class="recent-header"><a href="{{ tag.link }}">{{ tag.tag_type }}<span ng-show="tag.value">: {{tag.value}}</span></a></h5></strong>
-              <span class="text-muted">From: <a href="#/references/detail/{{ tag.reference.id }}">{{ tag.reference }}</a></span>
+              <span class="text-muted">From: <a href="/references/detail/{{ tag.reference.id }}">{{ tag.reference }}</a></span>
             </li>
 
           </ul>
         </div>
 
         <div class="col-xs-12 text-center">
-          <a class="btn btn-black" href="#/tags/all"><h4>Browse the rest of our ethical data</h4></a>
+          <a class="btn btn-black" href="/tags/all"><h4>Browse the rest of our ethical data</h4></a>
         </div>
 
 
@@ -168,7 +168,7 @@
 
           <p class="text-left">Axiologue is a community-based project.  We are researchers, designers, teachers, artists, philosophers, programmers, students, and more. Axiologue could even be you! Learn more about how to join the Axiologue community below. We'd love to have you join our ever-growing community!</p>
 
-          <a href="#/references/how-to" class="btn btn-orange btn-lg btn-help">How To Help</a>
+          <a href="/references/how-to" class="btn btn-orange btn-lg btn-help">How To Help</a>
 
         </div>
       </div>
@@ -188,7 +188,7 @@
                 How Does Scoring Work?<i class="pull-right fa" ng-class="{'fa-minus-square-o': status.open3, 'fa-plus-square-o': !status.open3}"></i>
               </uib-accordion-heading>
               
-              <p>This is such an important topic that we wrote a whole <a href="#/blog/posts/how-unethical-is-a-negative-two">blog post</a> about it.</p>
+              <p>This is such an important topic that we wrote a whole <a href="/blog/posts/how-unethical-is-a-negative-two">blog post</a> about it.</p>
 
               <p>The short answer is that we match the facts we know about each company/product with your ethical feelings about each fact.  The scores roughly translate to:</p>
 
@@ -198,7 +198,7 @@
                 <li>a <strong>zero</strong> means you don't care about that issue (it could also mean we don't have any data in that particular category)!</li>
               </ul>
 
-              <p>To construct your own ethical profile, <a href="#/signUp">sign up</a> for an account. If you don't want to make an account at this time, don't worry: you can browse our products and see scores for our generic profiles</p>
+              <p>To construct your own ethical profile, <a href="/signUp">sign up</a> for an account. If you don't want to make an account at this time, don't worry: you can browse our products and see scores for our generic profiles</p>
             </uib-accordion-group>
 
             <!-- accordion panel -->
@@ -207,7 +207,7 @@
                 How can I help?<i class="pull-right fa" ng-class="{'fa-minus-square-o': status.open4, 'fa-plus-square-o': !status.open4}"></i>
               </uib-accordion-heading>
               
-              <p>All our research is collected by user volunteers like you!  We wrote a guide to help <a href="#/references/how-to">first-time contributors</a>, and you should drop into our <a href="#/forum">forum</a> if you have have further questions.</p>
+              <p>All our research is collected by user volunteers like you!  We wrote a guide to help <a href="/references/how-to">first-time contributors</a>, and you should drop into our <a href="/forum">forum</a> if you have have further questions.</p>
 
             </uib-accordion-group>
 
@@ -227,7 +227,7 @@
                 How do you define your ethics?<i class="pull-right fa" ng-class="{'fa-minus-square-o': status.open1, 'fa-plus-square-o': !status.open1}"></i>
               </uib-accordion-heading>
               
-              <p>If you want to browse without making an account, Axiologue has generic profiles that represent the ethical profiles of certain stock characters (e.g. Generic Liberal, Generic Conservative).  To make your own ethical profile, <a href="#/signUp">Sign Up</a> and Axiologue will ask a few questions to help you set a base profile.  If you want to further tweak your ethical profile, you can do so on your <a href="#/profile">profile page</a>.</p>
+              <p>If you want to browse without making an account, Axiologue has generic profiles that represent the ethical profiles of certain stock characters (e.g. Generic Liberal, Generic Conservative).  To make your own ethical profile, <a href="/signUp">Sign Up</a> and Axiologue will ask a few questions to help you set a base profile.  If you want to further tweak your ethical profile, you can do so on your <a href="/profile">profile page</a>.</p>
 
               </uib-accordion-group>
 
@@ -237,7 +237,7 @@
                 How can I request a product category?<i class="pull-right fa" ng-class="{'fa-minus-square-o': status.open2, 'fa-plus-square-o': !status.open2}"></i>
               </uib-accordion-heading>
               
-              <p>We are currently only focused on athletic shoes, but we are planning to expand into new product categories soon. If you have an idea for what product categories you'd like to see Axiologue cover, <a href="MAILTO:info@axiologue.org">email us</a> or let us on <a href="#/forum/main">on the forums</a>.</p>
+              <p>We are currently only focused on athletic shoes, but we are planning to expand into new product categories soon. If you have an idea for what product categories you'd like to see Axiologue cover, <a href="MAILTO:info@axiologue.org">email us</a> or let us on <a href="/forum/main">on the forums</a>.</p>
 
               </uib-accordion-group>
           </uib-accordion> 

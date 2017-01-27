@@ -11,13 +11,14 @@ var portal = angular.module('portal', [
 ]);
 
 // Resource settings
-portal.config(['$resourceProvider',function($resourceProvider) {
+portal.config(['$resourceProvider', '$locationProvider', '$httpProvider', function($resourceProvider, $locationProvider, $httpProvider) {
   $resourceProvider.defaults.stripTrailingSlashes = false;
+  $locationProvider.html5Mode(true);
+  $httpProvider.interceptors.push('tokenCleaner');
 }]);
 
 // api settings
 portal.config(['$httpProvider', function ($httpProvider) {
-  $httpProvider.interceptors.push('tokenCleaner');
 }]);
 
 portal.config(['$routeProvider',

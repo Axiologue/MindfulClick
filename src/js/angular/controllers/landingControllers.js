@@ -4,7 +4,7 @@ angular.module('portal')
 
   var recentSuccess = function (response) {
     for (var i=0; i < response.length; i++) {
-      response[i].link = response[i].product ? '#/products/detail/' + response[i].product.id : '#/companies/detail/' + response[i].company.replace(' ', '-');
+      response[i].link = response[i].product ? '/products/detail/' + response[i].product.id : '/companies/detail/' + response[i].company.replace(' ', '-');
     }
 
     $scope.left_tags = response.slice(0, 5);

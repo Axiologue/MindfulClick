@@ -7,6 +7,10 @@
   <meta name="description" content="Mindful Click helps you buy with your beliefs.  We help you find the products best made to your ethical specifications!">
   <meta name="keywords" content="ethics, shopping, corporate social responsibility, products, labor, environment, CSR, community, articles, data, crowdsourced, politics">
   <meta name="author" content="Axiologue">
+
+  <base href="/">
+  </base>
+
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <title>Axiologue -- Your Ethical Shopping Guide</title>
 
@@ -44,7 +48,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#/">Mindful Click</a>
+          <a class="navbar-brand" href="/">Mindful Click</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -53,27 +57,27 @@
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products <i class="fa fa-angle-down"></i></a>
               <ul class="dropdown-menu">
-                <li><a href="#/products/search">Search Products</a></li>
-                <li><a href="#/companies/all">Compare Companies</a></li>
+                <li><a href="/products/search">Search Products</a></li>
+                <li><a href="/companies/all">Compare Companies</a></li>
               </ul>
             </li>
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sources <i class="fa fa-angle-down"></i></a>
               <ul class="dropdown-menu">     
-                <li><a href="#/references/all">Browse Sources</a></li>
-                <li ng-show="authenticated"><a href="#/references/new">Add a Source</a></li>
-                <li><a href="#/tags/all">Browse Data</a></li>
+                <li><a href="/references/all">Browse Sources</a></li>
+                <li ng-show="authenticated"><a href="/references/new">Add a Source</a></li>
+                <li><a href="/tags/all">Browse Data</a></li>
               </ul>
             </li>
-            <li><a href="#/forum/main">Forum</a></li>
-            <li ng-hide="authenticated"><div class="nav-button"><a class="btn btn-black navbar-btn" href="#/login">Sign In</a></div></li>
+            <li><a href="/forum/main">Forum</a></li>
+            <li ng-hide="authenticated"><div class="nav-button"><a class="btn btn-black navbar-btn" href="/login">Sign In</a></div></li>
             <li class="dropdown" ng-show="authenticated">
               <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ user.username }} <i class="fa fa-angle-down"></i></a>
               <ul class="dropdown-menu">
-                <li><a href="#/account">Account Settings</a></li>
-                <li><a href="#/profile">Ethics Profile</a></li>
-                <li ng-show="user.is_staff"><a href="#/profile/questions">Edit Profile Questions</a></li>
-                <li><a href="#/login" ng-click="logout()">Logout</a></li>
+                <li><a href="/account">Account Settings</a></li>
+                <li><a href="/profile">Ethics Profile</a></li>
+                <li ng-show="user.is_staff"><a href="/profile/questions">Edit Profile Questions</a></li>
+                <li><a href="/login" ng-click="logout()">Logout</a></li>
               </ul>
             </li>
           </ul>

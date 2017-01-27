@@ -16,7 +16,7 @@
       <div ng-hide="state.loading">
         <div class="row search-list" ng-show="results.length > 0" >
           <div ng-repeat="product in results" class="search-item col-xs-12 col-sm-6">
-            <a href="#/products/detail/{{ product.id }}">
+            <a href="/products/detail/{{ product.id }}">
               <div class="search-image">
                 <img class="brand-thumbnail" src="img/Logos/{{ product.company.replace(' ','-') }}-small-black.png" />
               </div>

@@ -43,11 +43,12 @@ angular.module('portal')
                           'Access-Control-Allow-Credentials': 'true'},
                 params: params,
                 data: data
-            })
-            .success(angular.bind(this,function(data, status, headers, config) {
-                deferred.resolve(data, status);
-            }))
-            .error(angular.bind(this,function(data, status, headers, config) {
+            }).then(function(response) {
+                deferred.resolve(response.data, response.status);
+            }, function(response) {
+                var data = response.data,
+                    status = response.status;
+
                 console.log("error syncing with: " + url);
                 // Set request status
                 if(data){
@@ -68,8 +69,8 @@ angular.module('portal')
                         data.non_field_errors = ["Server timed out. Please try again."];
                     }
                 }
-                deferred.reject(data, status, headers, config);
-            }));
+                deferred.reject(data, status, response.headers, response.config);
+            });
             return deferred.promise;
         },
         'register': function(username,password1,password2,email,more){

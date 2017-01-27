@@ -5,7 +5,7 @@
       <div bars-legend data="scores"></div>
 
       <div class="btn-personalized-wrapper">
-        <a href="#/login" class="btn btn-black btn-sm btn-personalized" ng-hide="authenticated">Login to see your own personalized score</a>
+        <a href="/login" class="btn btn-black btn-sm btn-personalized" ng-hide="authenticated">Login to see your own personalized score</a>
       </div>
 
       <div class="filter-box">
@@ -42,7 +42,7 @@
 
     </div>
     <div class="col-xs-12 col-md-8 col-lg-8">
-      <horizontal-bars data="scores" bar-height="12" chart-gap="12" margin-top="20" link-text="#/companies/detail/"></horizontal-bars>
+      <horizontal-bars data="scores" bar-height="12" chart-gap="12" margin-top="20" link-text="/companies/detail/"></horizontal-bars>
       <div ng-show="loading" class="text-center">
         <i class="fa fa-spinner fa-pulse fa-4x"></i>
         <span class="sr-only">Loading...</span>

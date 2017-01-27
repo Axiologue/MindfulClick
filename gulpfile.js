@@ -13,6 +13,7 @@ var gulp = require('gulp'),
 
 
 var paths = {
+  redirects: 'src/_redirects',
   scripts: 'src/**/*.js',
   styles: 'src/css/*.css',
   index: 'src/index.html',
@@ -30,22 +31,32 @@ var pipes = {};
 pipes.moveFontsDev = function () {
     gulp.src([paths.fa_fonts])
         .pipe(gulp.dest(paths.distDev + '/fonts'));
-}
+};
 
 pipes.moveFontsProd = function () {
     gulp.src([paths.fa_fonts])
         .pipe(gulp.dest(paths.distProd + '/fonts'));
-}
+};
 
 pipes.moveImagesDev = function () {
     gulp.src(paths.images)
         .pipe(gulp.dest(paths.distDev + '/img'));
-}
+};
 
 pipes.moveImagesProd = function () {
     gulp.src(paths.images)
         .pipe(gulp.dest(paths.distProd + '/img'));
-}
+};
+
+pipes.moveRedirectsDev = function () {
+    gulp.src(paths.redirects)
+        .pipe(gulp.dest(paths.distDev));
+};
+
+pipes.moveRedirectsProd = function () {
+    gulp.src(paths.redirects)
+        .pipe(gulp.dest(paths.distProd));
+};
 
 // Use gulp-angular-filesort to load files in the proper order
 pipes.orderedVendorScripts = function() {  
@@ -211,12 +222,14 @@ pipes.builtIndexProd = function() {
 };
 
 pipes.builtAppDev = function() {  
+    pipes.moveRedirectsDev();
     pipes.moveImagesDev();
     pipes.moveFontsDev();
     return es.merge(pipes.builtIndexDev(), pipes.builtPartialsDev());
 };
 
 pipes.builtAppProd = function() { 
+    pipes.moveRedirectsProd();
     pipes.moveImagesProd(); 
     pipes.moveFontsProd();
     return pipes.builtIndexProd();
