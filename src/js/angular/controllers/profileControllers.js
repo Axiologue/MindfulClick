@@ -95,7 +95,7 @@ angular.module('portal')
       $scope.state.error =  JSON.stringify(response.data);
     };
 
-    Question.newQuestion($scope.newQuestion, success, failure)
+    Question.newQuestion($scope.newQuestion, success, failure);
   };
 }]);
 

@@ -38,7 +38,7 @@ angular.module('portal')
 
   services.getName = function (url_name) {
     return url_name != 'Po-Zu' ? url_name.replace('-', ' ') : 'Po-Zu';
-  }
+  };
 
   return services;
 

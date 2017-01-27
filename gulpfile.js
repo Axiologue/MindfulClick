@@ -374,23 +374,23 @@ gulp.task('watch-prod', ['clean-build-app-prod', 'validate-devserver-scripts'], 
 gulp.task('default', ['clean-build-app-prod']);
 
 // task for publishing to S3
-gulp.task('publish', function () {
-  var publisher = plugins.awspublish.create({
-    region: 'us-east-1',
-    params: {
-      Bucket: 'data.axiologue.org'
-    }
-  });
+//gulp.task('publish', function () {
+  //var publisher = plugins.awspublish.create({
+    //region: 'us-east-1',
+    //params: {
+      //Bucket: 'data.axiologue.org'
+    //}
+  //});
 
-  var headers = {
-    'Cache-Control': 'max-age=315360000, no-transform, public'
-  }
+  //var headers = {
+    //'Cache-Control': 'max-age=315360000, no-transform, public'
+  //}
 
-  return gulp.src(paths.distProd + '/**/*')
-    .pipe(publisher.publish(headers))
-    .pipe(publisher.sync())
-    .pipe(plugins.awspublish.reporter());
-});
+  //return gulp.src(paths.distProd + '/**/*')
+    //.pipe(publisher.publish(headers))
+    //.pipe(publisher.sync())
+    //.pipe(plugins.awspublish.reporter());
+//});
 
 // webdriver update
 gulp.task('webdriver-update',plugins.protractor.webdriver_update)
@@ -440,37 +440,37 @@ gulp.task('tdd', function (done) {
   }, done).start();
 });
 
-var aws_credentials = require('./aws_credentials.json');
+//var aws_credentials = require('./aws_credentials.json');
 
-gulp.task('quicktest', function () {
-  plugins.util.log(plugins.cloudfrontInvalidateAwsPublish);
-});
+//gulp.task('quicktest', function () {
+  //plugins.util.log(plugins.cloudfrontInvalidateAwsPublish);
+//});
 
-gulp.task('publish', function () {
+//gulp.task('publish', function () {
 
-  var publisher = plugins.awspublish.create({
-    region: 'us-east-1',
-    params: {
-      Bucket: 'www.axiologue.org'
-    },
-    accessKeyId: aws_credentials.accessKeyId,
-    secretAccessKey: aws_credentials.secretAccessKey
-  });
+  //var publisher = plugins.awspublish.create({
+    //region: 'us-east-1',
+    //params: {
+      //Bucket: 'www.axiologue.org'
+    //},
+    //accessKeyId: aws_credentials.accessKeyId,
+    //secretAccessKey: aws_credentials.secretAccessKey
+  //});
 
-  var cfsettings = {
-    distribution: 'E1AI4VJXPLUL9Q',
-    accessKeyId: aws_credentials.accessKeyId,
-    secretAccessKey: aws_credentials.secretAccessKey
-  }
+  //var cfsettings = {
+    //distribution: 'E1AI4VJXPLUL9Q',
+    //accessKeyId: aws_credentials.accessKeyId,
+    //secretAccessKey: aws_credentials.secretAccessKey
+  //}
 
-  var headers = {
-    'Cache-Control': 'max-age=315360000, no-transform, public'
-  };
+  //var headers = {
+    //'Cache-Control': 'max-age=315360000, no-transform, public'
+  //};
 
-  return gulp.src(paths.distProd + '/**/*')
-    .pipe(publisher.publish(headers))
-    .pipe(publisher.sync())
-    .pipe(plugins.awspublish.reporter())
-    .pipe(plugins.cloudfrontInvalidateAwsPublish(cfsettings));
+  //return gulp.src(paths.distProd + '/**/*')
+    //.pipe(publisher.publish(headers))
+    //.pipe(publisher.sync())
+    //.pipe(plugins.awspublish.reporter())
+    //.pipe(plugins.cloudfrontInvalidateAwsPublish(cfsettings));
 
-});
+//});

@@ -22,7 +22,7 @@ angular.module('portal')
     } else {
       return _tags.saveMult({}, data, success, failure);
     }
-  }
+  };
 
   services.remove = function (tagID, success) {
     return _tags.remove({tagID: tagID}, success);
@@ -30,7 +30,7 @@ angular.module('portal')
 
   services.update = function (data, success, failure) {
     return _tags.update({tagID: data.id}, data, success, failure);
-  }
+  };
 
   // Fix data coming back from server to match display data
   services.parseResponse = function (data, cat_id, companies, categories) {

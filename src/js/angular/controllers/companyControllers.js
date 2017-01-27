@@ -78,7 +78,7 @@ angular.module('portal')
         'scores': obj.scores.filter(function (obj) { 
           return obj.user !== 'Generic_Conservative' && obj.user !== 'Generic_Liberal';
         }) 
-      }
+      };
     });
     $scope.scores = scores;
   };

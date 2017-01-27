@@ -24,7 +24,7 @@ angular.module('portal')
     $event.stopPropagation();
 
     $scope.showNewThreadForm = false;
-  }
+  };
 
   $scope.submitThread = function () {
     var success = function (response) {
@@ -64,7 +64,7 @@ angular.module('portal')
     $event.stopPropagation();
 
     $scope.showNewPostForm = false;
-  }
+  };
 
   $scope.submitPost = function () {
     var success = function (response) {

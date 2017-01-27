@@ -83,7 +83,7 @@ angular.module('portal')
     };
 
     Reference.update($scope.tempReference, success, failure);
-  }
+  };
 
 }]);
 
@@ -142,8 +142,8 @@ angular.module('portal')
       $('.modal-backdrop').remove();
 
       $location.path('/references/deleted');
-    }
+    };
 
     Reference.remove($scope.reference.id, success);
-  }
+  };
 }]);

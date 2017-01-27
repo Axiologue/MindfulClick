@@ -38,3 +38,8 @@ dist.dev/
 # secret keys #
 ###############
 aws_credentials.json
+
+# builds #
+##########
+dist.prod/
+dist.dev/

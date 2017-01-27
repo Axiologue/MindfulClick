@@ -37,7 +37,7 @@ angular.module('portal')
   };
 
   services.newQuestion = function (data, success, failure) {
-    return _question.save({}, data, success, failure)
+    return _question.save({}, data, success, failure);
   };
 
   services.all = function () {

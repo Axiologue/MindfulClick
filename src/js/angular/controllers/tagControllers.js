@@ -24,7 +24,7 @@ angular.module('portal')
     $scope.newTag.tag_type = $scope.tag.tag_type.id;
 
     // Add the attached product if it exists, otherwise set newTag.products to empty
-    $scope.newTag.products = $scope.tag.product ? [$scope.tag.product] : []
+    $scope.newTag.products = $scope.tag.product ? [$scope.tag.product] : [];
     $scope.newTag.reference = $scope.reference.id;
   };
 
@@ -72,7 +72,7 @@ angular.module('portal')
 
   $scope.deleteTag = function () {
     $('#tag-delete-' + $scope.tag.id).modal('toggle');
-  }
+  };
 
   $scope.modalAction = function () {
     var success = function (response) {
@@ -86,7 +86,7 @@ angular.module('portal')
 
     Tag.remove($scope.tag.id, success);
 
-  }
+  };
 
 }]);
 
@@ -122,7 +122,7 @@ angular.module('portal')
           $scope.reference.ethicstags.push(response[i]);
         }
       } else {
-        Tag.parseResponse(response, $scope.newTag.subcategory, $scope.companies, $scope.categories)
+        Tag.parseResponse(response, $scope.newTag.subcategory, $scope.companies, $scope.categories);
         $scope.reference.ethicstags.push(response);
       }
 
@@ -166,7 +166,7 @@ angular.module('portal')
     $event.stopPropagation();
 
     var newTypeSuccess = function (response) {
-      $scope.tagTypes.push(response)
+      $scope.tagTypes.push(response);
       $scope.newTag.tag_type = response.id;
       $scope.tagFormState.addTagType = false;
     };
@@ -211,7 +211,7 @@ angular.module('portal')
     var i;
     for (i=0; i < list.length; i++) {
       if( list[i].id === obj.id) {
-        return true
+        return true;
       }
     }
 

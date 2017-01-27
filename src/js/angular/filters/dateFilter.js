@@ -3,5 +3,5 @@ angular.module('portal')
   return function (dateString) {
     var date = new Date(dateString);
     return date.toLocaleString();
-  }
+  };
 }]);
