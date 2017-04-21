@@ -1,6 +1,6 @@
 angular.module('portal')
 .factory('BaseUrl', [function () {
-    return 'https://api.mindful.click/';
+    return 'http://localhost:8000/';
 }]);
 
 angular.module('portal')

@@ -35,7 +35,7 @@
           </div>
           <div class="row search-list collapse in" id="company-data">
             <div ng-repeat="result in results.companies" class="search-item col-xs-12 col-sm-6" >
-              <a href="#/companies/detail/{{ result.text.replace(' ','-') }}">
+              <a href="/companies/detail/{{ result.text.replace(' ','-') }}">
                 <div class="search-image">
                   <img class="brand-thumbnail" src="img/Logos/{{ result.text.replace(' ','-') }}-small-black.png" />
                 </div>
@@ -64,7 +64,7 @@
           </div>
           <div class="row search-list collapse in" id="product-data">
             <div class="search-item col-xs-12 col-sm-6" ng-repeat="result in results.products">
-              <a href="#/products/detail/{{ result.id }}">
+              <a href="/products/detail/{{ result.id }}">
                 <div class="search-image">
                   <img class="brand-thumbnail" src="img/Logos/{{ result.text[1].replace(' ','-') }}-small-black.png" />
                 </div>
@@ -94,7 +94,7 @@
           </div>
           <div class="row search-list collapse in" id="reference-data">
             <div class="search-item col-xs-12" ng-repeat="result in results.references">
-              <a href="#/references/detail/{{ result.id }}">
+              <a href="/references/detail/{{ result.id }}">
                 <div class="search-content">
                   <strong><h4 class="search-header">{{result.text[0] }}</h4></strong>
                   <span class="text-muted">{{ result.text[1] }}</span>
